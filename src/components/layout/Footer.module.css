@@ -1,0 +1,76 @@
+
+
+.footer {
+  background-color: #fff;
+  padding: 120px 20px 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footerCol {
+  margin: 10px 15px;
+  max-width: 150px;
+}
+
+.logoSection {
+  max-width: 250px;
+}
+
+.footerLogo {
+  width: 130px;
+  height: auto;
+}
+
+.footerText {
+  font-weight: 700;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.footerDownloadTitle {
+  font-size: 14px;
+  font-weight: bolder;
+  margin: 15px 0 5px 0;
+  color: #ec407a;
+}
+
+.storeButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.storeImg {
+  width: 120px;
+  height: auto;
+}
+
+.footerCol h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.footerCol a {
+  color: #000;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.footerCol a:hover {
+  text-decoration: underline;
+}
+
+.footerBottom {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 30px;
+  font-family: sans-serif;
+}

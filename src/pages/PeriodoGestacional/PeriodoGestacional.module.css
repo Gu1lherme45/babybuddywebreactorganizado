@@ -1,0 +1,10 @@
+.container { padding: 32px; max-width: 1100px; margin: 0 auto; }
+.heroText { margin-bottom: 24px; }
+.breadcrumb { color: #666; margin-bottom: 12px; }
+.title { margin-bottom: 12px; }
+.intro { margin-bottom: 12px; }
+.metaInfo { margin-bottom: 16px; }
+.articleMain { display: grid; gap: 20px; }
+.medicalReview, .reviewBox { background: #f7f7f7; padding: 16px; border-radius: 12px; }
+.reviewLabel { font-weight: 700; }
+.keyPoints { padding-left: 20px; }
