@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import styles from './Cadastro.module.css';
 
+import google from './imgcadastro/icongoogle.jpg';
+import apple from './imgcadastro/iconapple.png';
+
 export default function Cadastro() {
   const location = useLocation();
 
@@ -20,19 +23,6 @@ export default function Cadastro() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const togglePassword = (id, element) => {
-    const input = document.getElementById(id);
-    if (input.type === 'password') {
-      input.type = 'text';
-      element.querySelector('i').classList.remove('fa-eye');
-      element.querySelector('i').classList.add('fa-eye-slash');
-    } else {
-      input.type = 'password';
-      element.querySelector('i').classList.remove('fa-eye-slash');
-      element.querySelector('i').classList.add('fa-eye');
-    }
-  };
-
   const onSubmit = async (data) => {
     setLoading(true);
     setError("");
@@ -48,11 +38,9 @@ export default function Cadastro() {
         statusUsuario: true,
       });
 
-      console.log('Resposta da API:', response.data);
       setSuccess("Cadastro realizado com sucesso!");
     } catch (error) {
-      console.error('Erro ao cadastrar:', error.response?.data || error.message);
-      setError('Erro ao cadastrar usuário. Verifique os dados.');
+      setError("Erro ao cadastrar usuário.");
     } finally {
       setLoading(false);
     }
@@ -60,68 +48,49 @@ export default function Cadastro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const data = {
       name: document.getElementById('nome').value,
       email: document.getElementById('email').value,
       password: document.getElementById('senha').value,
     };
+
     onSubmit(data);
   };
 
   return (
-    <div className={styles.appWrapper}>
-      {/* Esse id aqui é fundamental para o scroll funcionar */}
-      <div className={styles.cadastroContainer} id="formulario">
-        <h2>BabyBuddy</h2>
+    <div className={styles.container}>
+      <div className={styles.card} id="formulario">
 
-        {success && <div className={styles.successMessage}>{success}</div>}
-        {error && <div className={styles.errorMessage}>{error}</div>}
+        <h1 className={styles.titulo}>Cadastre-se</h1>
 
-        <form id="formCadastro" onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <input type="text" id="nome" placeholder="Nome completo" required />
-            <i className="fa fa-user"></i>
-          </div>
+        {success && <div className={styles.success}>{success}</div>}
+        {error && <div className={styles.error}>{error}</div>}
 
-          <div className={styles.inputGroup}>
-            <input type="tel" id="telefone" placeholder="Telefone" required />
-            <i className="fa fa-phone"></i>
-          </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
 
-          <div className={styles.inputGroup}>
-            <input type="email" id="email" placeholder="Email" required />
-            <i className="fa fa-envelope"></i>
-          </div>
+          <input type="text" id="nome" placeholder="Nome completo" required />
+          <input type="tel" id="telefone" placeholder="Telefone" required />
+          <input type="email" id="email" placeholder="E-mail" required />
+          <input type="password" id="senha" placeholder="Criar senha" required />
 
-          <div className={styles.inputGroup}>
-            <input type="password" id="senha" placeholder="Senha" required />
-            <span
-              className={styles.togglePassword}
-              onClick={(e) => togglePassword('senha', e.currentTarget)}
-            >
-              <i className="fa fa-eye"></i>
-            </span>
-          </div>
-
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              id="confirmaSenha"
-              placeholder="Confirmar Senha"
-              required
-            />
-            <span
-              className={styles.togglePassword}
-              onClick={(e) => togglePassword('confirmaSenha', e.currentTarget)}
-            >
-              <i className="fa fa-eye"></i>
-            </span>
-          </div>
-
-          <button type="submit" disabled={loading}>
+          <button type="submit" disabled={loading} className={styles.btn}>
             {loading ? "Cadastrando..." : "Cadastrar"}
           </button>
+
         </form>
+
+        <div className={styles.divider}>
+          <span></span>
+          <p>ou</p>
+          <span></span>
+        </div>
+
+        <div className={styles.social}>
+          <img src={google} alt="Google" />
+          <img src={apple} alt="Apple" />
+        </div>
+
       </div>
     </div>
   );
