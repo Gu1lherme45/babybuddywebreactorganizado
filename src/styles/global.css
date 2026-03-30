@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;800&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 html {
   scroll-behavior: smooth;
@@ -36,3 +32,4 @@ img {
 main {
   padding: 2rem;
 }
+

@@ -1,73 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap');
 
-.header {
-  background-color: white;
-  padding: 25px 30px;
-  border-radius: 50px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
-  margin: 20px auto;
-  font-family: 'League Spartan', sans-serif;
-
+.navbar {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
+  top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   z-index: 1000;
 }
 
-.headerContent {
+.navContainer {
+  background: #e0e0e0;
+  padding: 15px 40px;
+  border-radius: 50px;
+  width: 70%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-
-.navLinks {
-  display: flex;
   align-items: center;
-  gap: 20px; 
-  padding-left: 50px;
 }
 
-.navLinks button {
-  background: transparent;
-  white-space: nowrap;
-  border: none;
-  color: #ec407a;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  transition: color 0.3s;
-  padding: 8px 16px;
-  border-radius: 30px;
+.navLinks a {
+  margin-right: 30px;
+  text-decoration: none;
+  color: #d81b60;
+  font-weight: 600;
 }
 
-.navLinks button:hover {
-  color: #f06292;
-}
-
-.cadastroWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 20px;
-}
-
-.cadastroLink {
-  background: linear-gradient(to right, #f06292, #ec407a);
+.navButton a {
+  background: #d81b60;
   color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
-  outline: none; 
-}
-
-
-.cadastroLink:hover {
-  background: linear-gradient(to right, #ec407a, #f06292);
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
 }
