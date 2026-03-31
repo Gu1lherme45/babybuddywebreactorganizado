@@ -7,14 +7,18 @@
 }
  
 .hero {
-  width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 80px 20px; 
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   position: relative;
   overflow: hidden;
 }
@@ -28,7 +32,7 @@
 }
  
 .heroContainer {
-
+  padding-top: 120px;
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
@@ -51,7 +55,7 @@
  
 .heroImg img {
   width: 100%;
-  max-width: 250px;
+  max-width: 200px;
   height: auto;
   display: block;
   object-fit: contain;
@@ -90,7 +94,7 @@
   }
  
   .heroImg img {
-    max-width: 280px;
+    max-width: 200px;
   }
  
   .heroText h1 {
@@ -119,7 +123,7 @@
   }
  
   .heroImg img {
-    max-width: 240px;
+    max-width: 200px;
   }
  
   .heroText h1 {
@@ -156,3 +160,133 @@
 
 }
  
+
+
+
+
+
+
+/* PADRÃO DAS SECTIONS */
+.sectionBaby,
+.sectionFeatures,
+.sectionArtigos {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+/* CONTEÚDO CENTRAL (mantido para outras sections) */
+.sectionContent {
+  max-width: 800px;
+  text-align: center;
+}
+
+.sectionContent h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.sectionContent p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+
+
+/* ========================= */
+/* NOVA SECTION BABYBUDDY */
+/* ========================= */
+
+.sectionBaby {
+  background-color: #ffffff;
+  color: #c21872;
+}
+
+.babyContainer {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.babyTitle {
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.babyContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.babyImg img {
+ width: 180px !important;
+ max-width: 100px; 
+}
+
+.babyCards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+
+.card {
+  background: #FFF3F5;
+  padding: 16px 20px;
+  border-radius: 14px;
+  width: 420px;
+  max-width: 100%;
+  text-align: left;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); 
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .babyContent {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .babyImg img {
+    max-width: 220px;
+  }
+
+  .card {
+    max-width: 50%;
+  }
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  transition: 0.4s;
+}
+
+/* CORES DAS OUTRAS (inalteradas) */
+.sectionFeatures {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.sectionArtigos {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}

@@ -1,78 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;800&display=swap');
-
-
 .container {
-  font-family: 'League Spartan', sans-serif;
   height: 100vh;
+  width: 100%;
   background-color: #ffffff;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
 }
 
 .titulo {
-  font-family: 'League Spartan', sans-serif;
   color: #e91e63;
-  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 .form input {
-  font-family: 'League Spartan', sans-serif;
-  width: 280px;
-  padding: 12px;
+  padding: 15px;
+  border-radius: 12px;
   border: none;
-  border-radius: 10px;
-  background-color: #EDEDED;
+  background-color: #E5E5E5;
+  font-size: 12px;
   outline: none;
-}
-
-/* senha com olhinho */
-.passwordField {
-  position: relative;
-}
-
-.passwordField span {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  cursor: pointer;
-  color: #555;
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 600;
 }
 
 .btn {
-  font-family: 'League Spartan', sans-serif;
   margin-top: 10px;
-  padding: 12px;
+  padding: 15px;
   border: none;
   border-radius: 25px;
   background-color: #e91e63;
   color: white;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background-color: #d81b60;
 }
 
-/* divisor */
 .divider {
   display: flex;
   align-items: center;
-  width: 280px;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .divider span {
@@ -86,24 +72,36 @@
   color: #666;
 }
 
-/* redes */
 .social {
   display: flex;
+  justify-content: center;
   gap: 20px;
 }
 
 .social img {
   width: 30px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* mensagens */
+.social img:hover {
+  transform: scale(1.1);
+}
+
 .success {
-  color: green;
+  background-color: #fce4ec; /* rosa bem claro */
+  color: #c2185b; /* rosa forte */
+  padding: 10px;
+  border-radius: 8px;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .error {
-  color: red;
+  background-color: #fdecea; /* levemente avermelhado */
+  color: #b71c1c; /* vermelho mais elegante */
+  padding: 10px;
+  border-radius: 8px;
   margin-bottom: 10px;
+  font-size: 14px;
 }

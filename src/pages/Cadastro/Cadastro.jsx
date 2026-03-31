@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import styles from './Cadastro.module.css';
 
-import google from './imgcadastro/icongoogle.jpg';
-import apple from './imgcadastro/iconapple.png';
-
 export default function Cadastro() {
   const location = useLocation();
 
@@ -29,7 +26,7 @@ export default function Cadastro() {
     setSuccess("");
 
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/Usuario', {
+      await axios.post('http://localhost:8080/api/v1/Usuario', {
         nome: data.name,
         email: data.email,
         senha: data.password,
@@ -87,8 +84,11 @@ export default function Cadastro() {
         </div>
 
         <div className={styles.social}>
-          <img src={google} alt="Google" />
-          <img src={apple} alt="Apple" />
+          <img 
+            src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" 
+            alt="Google" 
+          />
+         
         </div>
 
       </div>

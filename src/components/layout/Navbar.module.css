@@ -1,23 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700;800&display=swap'); 
 
 .navbar {
-  width: 50%;
+  width: 100%;
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   z-index: 1000;
   display: flex;
   justify-content: center;
 }
  
 .container {
-  width: min(1180px, 92%);
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(10px); 
+  width: min(1100px, 90%); 
+  margin-top: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   border-radius: 999px;
-  padding: 14px 20px;
+  padding: 18px 24px; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,25 +26,35 @@
 .links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   margin-left: 60px;
 }
- 
+
 .links a {
-  font-weight: bold;
   text-decoration: none;
-  color: #c21872;
-  font-size: 18px;
-  font-weight: 600;
+  color: #DA1D6B;
+  font-size: 19px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
 }
 
- 
+.links a:hover {
+  filter: brightness(1.15);
+}
+
 .button a {
   text-decoration: none;
   background: linear-gradient(90deg, #ff4fa0, #d81b78);
   color: #fff;
   padding: 10px 20px;
   border-radius: 999px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.button a:hover {
+  filter: brightness(1.05); /* levemente mais claro */
 }
