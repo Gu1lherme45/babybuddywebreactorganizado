@@ -1,6 +1,7 @@
 import styles from './Home.module.css';
 import imgGravida from '../../assets/imggravida.png';
 import imgBackground from '../../assets/imgbackground.jpg';
+
 export default function Home() {
   return (
     <div className={styles.home}>
@@ -32,5 +33,6 @@ export default function Home() {
       </div>
 
     </div>
+
   );
 }
