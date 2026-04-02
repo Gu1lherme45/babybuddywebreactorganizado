@@ -166,6 +166,12 @@
 
 
 
+
+
+
+
+
+
 /* PADRÃO DAS SECTIONS */
 .sectionBaby,
 .sectionFeatures,
@@ -178,7 +184,6 @@
   padding: 80px 20px;
 }
 
-/* CONTEÚDO CENTRAL (mantido para outras sections) */
 .sectionContent {
   max-width: 800px;
   text-align: center;
@@ -194,13 +199,15 @@
   font-size: 1rem;
   line-height: 1.6;
 }
+/* CONTEÚDO CENTRAL (mantido para outras sections) */
 
 
 
 
-/* ========================= */
-/* NOVA SECTION BABYBUDDY */
-/* ========================= */
+
+
+
+
 
 .sectionBaby {
   background-color: #ffffff;
@@ -280,13 +287,161 @@
   transition: 0.4s;
 }
 
-/* CORES DAS OUTRAS (inalteradas) */
+
+
+
+
+
+
+
+
 .sectionFeatures {
-  background-color: #e3f2fd;
-  color: #1565c0;
+  width: 100%;
+  min-height: 100vh;
+  background-color:#ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.sectionArtigos {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+.containerFeatures {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: center;
+  gap: 40px;
+  z-index: 2;
 }
+
+.featureItem {
+  flex: 1;
+  max-width: 320px;
+}
+
+.featureItem img {
+  width: 90px;
+  margin-bottom: 5px;
+}
+
+.featureItem h3 {
+  font-size: 1.2rem;
+  color: #DA1D6B;
+  font-weight: 700;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.featureItem p {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.nuvens {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+}
+
+.nuvens svg {
+  width: 100%;
+  height: 220px; /* um pouco maior pra mostrar mais detalhe */
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sectionArtigos {
+  background-color: #FDE1E2; 
+  color: #c21872;
+}
+
+.artigosContainer {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.artigosTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.artigosGrid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.artigoCard {
+  width: 260px;
+  background: transparent;
+  text-align: left;
+}
+
+.artigoCard img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 15px;
+
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.artigoCard h3 {
+  font-size: 0.8rem;
+  color: #d81b60;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.artigoCard p {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.4;
+  transition: 0.3s;
+}
+
+.artigoCard p:hover {
+   text-decoration: underline;
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .artigosGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

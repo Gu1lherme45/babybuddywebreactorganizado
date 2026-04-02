@@ -1,27 +1,36 @@
 import styles from './Footer.module.css';
-import logo from '../../assets/logo-babybuddy3.png';
+import logo from '../../assets/logo1.png';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-
-        {/* LOGO + TEXTO */}
+        
+        {/* Logo + Stores */}
         <div className={styles.left}>
-          <img src={logo} alt="BabyBuddy" className={styles.logo} />
-          <p className={styles.slogan}>
-            Conheça o seu corpo.<br />
-            Proteja sua saúde.
-          </p>
+          <img src={logo} alt="BabyBuddy Logo" className={styles.logo} />
+
+          <div className={styles.stores}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Google Play"
+              className={styles.storeIcon}
+            />
+            <img
+              src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+              alt="App Store"
+              className={styles.storeIcon}
+            />
+          </div>
         </div>
 
-        {/* LINKS */}
+        {/* Links */}
         <div className={styles.links}>
-
+          
           <div>
             <h4>PRODUTO</h4>
             <a href="#">Segurança</a>
-            <a href="#">Centro de Ajuda</a>
+            <a href="#">Contato</a>
           </div>
 
           <div>
@@ -39,8 +48,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* COPYRIGHT */}
-      <div className={styles.copy}>
+      {/* Copyright */}
+      <div className={styles.bottom}>
         © 2026 BabyBuddy — Todos os direitos reservados.
       </div>
     </footer>
