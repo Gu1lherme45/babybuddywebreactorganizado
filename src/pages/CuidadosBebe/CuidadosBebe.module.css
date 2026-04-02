@@ -1,0 +1,154 @@
+/* FUNDO GERAL COM BORDAS LATERAIS */
+body {
+  background-color: #fdecef; /* rosa suave */
+  margin: 0;
+  padding: 0;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  font-family: 'League Spartan', sans-serif;
+  color: #2b2b2b;
+  line-height: 1.6;
+  background-color: #ffffff; /* 👈 ESSENCIAL */
+  border-radius: 10px; /* opcional (fica bonito) */
+  padding-top: 120px;
+}
+
+/* HERO */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.headerText {
+  flex: 1;
+  max-width: 480px;
+}
+
+.header h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* IMAGEM AJUSTADA */
+.image {
+  width: 440px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-top: -15px;
+}
+
+/* SEÇÕES */
+.section {
+  margin-bottom: 45px;
+}
+
+.section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.section p {
+  font-size: 15px;
+  color: #444;
+  max-width: 720px;
+}
+
+/* LISTA */
+.section ul {
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.section li {
+  list-style: none;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+}
+
+.section li::before {
+  content: "--";
+  position: absolute;
+  left: 0;
+}
+
+/* CARDS */
+.cards {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 900px;
+}
+
+.card {
+  background-color: #f9e9ed;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  max-width: 900px;
+}
+
+.card h3 {
+  color: #c2185b;
+  margin-bottom: 6px;
+}
+
+.card p {
+  margin: 0;
+  max-width: 600px;
+}
+
+/* DESTAQUE FINAL */
+.highlight {
+  background-color: #f9e9ed;
+  padding: 22px;
+  border-radius: 10px;
+  margin-top: 50px;
+  font-size: 15px;
+  color: #c2185b;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerText {
+    max-width: 100%;
+  }
+
+  .image {
+    width: 200px;
+  }
+
+  body {
+    background: #ffffff;
+  }
+}
