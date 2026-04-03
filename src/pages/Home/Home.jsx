@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styles from './Home.module.css';
 import imgGravida from '../../assets/gravida.svg';
 import imgMobile from "../../assets/mobile.svg";
@@ -11,11 +13,29 @@ import privacidade from "../../assets/privacidade.png";
 import nuvens from "../../assets/nuvens.svg";
 
 export default function Home() {
+
+ 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+
   return (
     <div className={styles.home}>
       
       {/* HERO */}
-      <section className={styles.hero}>
+      <section id="inicio" className={styles.hero}>
         <div className={styles.container}>
 
           <div className={styles.left}>
@@ -48,6 +68,7 @@ export default function Home() {
 
 
 <section id="babybuddyhome" className={styles.sectionBaby}>
+
   <div className={styles.babyContainer}>
 
     <h2 className={styles.babyTitle}>
@@ -145,35 +166,46 @@ export default function Home() {
 
 
 
+{/* SECTION 3 */}
+<section id="artigoshome" className={styles.sectionArtigos}>
 
-      {/* SECTION 3 */}
-      <section id="artigoshome" className={styles.sectionArtigos}>
-        <div className={styles.artigosContainer}>
-          
-          <h2 className={styles.artigosTitle}>Principais Artigos</h2>
+ <svg
+  viewBox="0 0 1440 150"
+  preserveAspectRatio="none"
+  className={styles.waveTopArtigos}
+>
+  <path
+    d="M0,0C120,60,240,100,360,90C480,80,600,40,720,40C840,40,960,80,1080,90C1200,100,1320,60,1440,0L1440,0L0,0Z"
+    fill="#FFD8DC"
+  />
+</svg>
 
-          <div className={styles.artigosGrid}>
-           <Link to="/cuidados-bebe" className={styles.artigoCard}>
-           <img src={art1} alt="Cuidados com o bebê" />
-           <h3>CUIDADOS COM O BEBÊ</h3>
-           <p> Tudo que você precisa saber para cuidar do seu bebê.</p>
-         </Link>
+  <div className={styles.artigosContainer}>
+    
+    <h2 className={styles.artigosTitle}>Principais Artigos</h2>
 
-         <Link to="/tentando-engravidar" className={styles.artigoCard}>
-           <img src={art2} alt="Tentando engravidar" />
-          <h3>TENTANDO ENGRAVIDAR?</h3>
-          <p>Quanto tempo demora a fecundação após a relação sexual?</p>
-         </Link>
+    <div className={styles.artigosGrid}>
+      <Link to="/cuidados-bebe" className={styles.artigoCard}>
+        <img src={art1} alt="Cuidados com o bebê" />
+        <h3>CUIDADOS COM O BEBÊ</h3>
+        <p>Tudo que você precisa saber para cuidar do seu bebê.</p>
+      </Link>
 
-        <Link to="/periodo-gestacional" className={styles.artigoCard}>
-         <img src={art3} alt="Período gestacional" />
-         <h3>PERÍODO GESTACIONAL</h3>
-         <p>Tudo que você precisa saber sobre o período gestacional!</p>
-        </Link>
+      <Link to="/tentando-engravidar" className={styles.artigoCard}>
+        <img src={art2} alt="Tentando engravidar" />
+        <h3>TENTANDO ENGRAVIDAR?</h3>
+        <p>Quanto tempo demora a fecundação após a relação sexual?</p>
+      </Link>
 
-          </div>
-        </div>
-      </section>
+      <Link to="/periodo-gestacional" className={styles.artigoCard}>
+        <img src={art3} alt="Período gestacional" />
+        <h3>PERÍODO GESTACIONAL</h3>
+        <p>Tudo que você precisa saber sobre o período gestacional!</p>
+      </Link>
+    </div>
+
+  </div>
+</section>
 
     </div>
   );

@@ -3,7 +3,21 @@ import logo from '../../assets/logo1.png';
 
 export default function Footer() {
   return (
+
     <footer className={styles.footer}>
+
+      {/* 🌊 ONDA NO TOPO (cor da section de cima = branco) */}
+      <svg
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        className={styles.footerWave}
+      >
+        <path
+          d="M0,40C120,80,240,80,360,60C480,40,600,0,720,0C840,0,960,40,1080,60C1200,80,1320,80,1440,40L1440,0L0,0Z"
+          fill="#ffffff"
+        />
+      </svg>
+
       <div className={styles.container}>
         
         {/* Logo + Stores */}
@@ -23,7 +37,7 @@ export default function Footer() {
             />
           </div>
         </div>
-
+ 
         {/* Links */}
         <div className={styles.links}>
           
@@ -52,6 +66,7 @@ export default function Footer() {
       <div className={styles.bottom}>
         © 2026 BabyBuddy — Todos os direitos reservados.
       </div>
+
     </footer>
   );
 }

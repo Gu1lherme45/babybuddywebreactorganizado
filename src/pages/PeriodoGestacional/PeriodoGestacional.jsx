@@ -5,4 +5,4 @@ export default function PeriodoGestacional() {
       <p>Página em construção...</p>
     </div>
   );
-}
+} 
