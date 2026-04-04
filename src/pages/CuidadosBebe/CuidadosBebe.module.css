@@ -139,7 +139,7 @@ body {
 }
 
 .section li {
-  list-style: none;
+  list-style: disc;
   margin-bottom: 10px;
   position: relative;
   padding-left: 18px;
@@ -147,7 +147,7 @@ body {
 }
 
 .section li::before {
-  content: "--";
+
   position: absolute;
   left: 0;
 }

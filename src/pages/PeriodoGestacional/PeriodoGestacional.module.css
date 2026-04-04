@@ -1,1 +1,138 @@
- 
+ /* FUNDO GERAL */
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  max-width: 900px;
+  margin: 120px auto 0;
+  padding: 50px 30px 70px;
+  font-family: 'League Spartan', sans-serif;
+  color: #2b2b2b;
+  line-height: 1.7;
+  background-color: #ffffff;
+  border-radius: 14px;
+}
+
+/* HEADER */
+.header {
+  margin-bottom: -60px;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  font-size: 13px;
+  color: #7a7a7a;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* TÍTULO */
+.header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 45px;
+}
+
+/* SUBTÍTULO */
+.subtitle {
+  font-size: 16px;
+  color: #555;
+  max-width: 700px;
+  margin-bottom: 15px;
+}
+
+/* META */
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f3d7dc;
+  color: #c2185b;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: -90px;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* SEÇÕES */
+.section {
+  margin-bottom: 45px;
+}
+
+.section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.section p {
+  font-size: 15px;
+  color: #000000;
+  max-width: 720px;
+}
+
+.section ul {
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.section li {
+  list-style: disc;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+}
+
+.section li::before {
+  position: absolute;
+  left: 0;
+}
+
+/* ALERTA (caixinha rosa tipo da imagem) */
+.warning {
+  background-color: #f9e9ed;
+  padding: 18px 20px;
+  border-radius: 10px;
+  margin: 30px 0;
+  font-size: 14px;
+  color: #c2185b;
+  border-left: 4px solid #c2185b;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+  }
+
+  body {
+    background: #ffffff;
+  }
+}

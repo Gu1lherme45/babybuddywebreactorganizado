@@ -5,7 +5,6 @@ body {
   padding: 0;
 }
 
-
 /* HEADER DO ARTIGO */
 .articleHeader {
   margin-bottom: -90px;
@@ -100,7 +99,6 @@ body {
   margin-bottom: 12px;
 }
 
-
 /* SEÇÕES */
 .section {
   margin-bottom: 25px;
@@ -153,7 +151,6 @@ body {
   padding: 20px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
-
 
 .card h3 {
   color: #c2185b;
