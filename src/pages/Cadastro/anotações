@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 import styles from './Cadastro.module.css';
 
 export default function Cadastro() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // 🔥 hook para navegação
 
   useEffect(() => {
     if (location.hash) {
@@ -21,7 +22,7 @@ export default function Cadastro() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // 🔥 LOGIN COM GOOGLE (sem backend)
+  // 🔥 LOGIN COM GOOGLE
   const loginGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -34,9 +35,19 @@ export default function Cadastro() {
         const user = await userInfo.json();
         console.log("Usuário Google:", user);
 
+        // 🔥 enviando pro backend
+        await axios.post('http://localhost:8080/api/v1/Usuario', {
+          nome: user.name,
+          email: user.email,
+          senha: "google_login",
+          nivel_acesso: 'CLIENTE',
+          data_cadastro: new Date().toISOString(),
+          statusUsuario: true,
+        });
+
         setSuccess("Login com Google realizado!");
 
-        // 👉 vai direto pro questionário
+        // 🔥 redireciona também após login Google
         navigate('/questionario');
 
       } catch (err) {
@@ -54,15 +65,21 @@ export default function Cadastro() {
     setSuccess("");
 
     try {
-      // 🔥 SIMULAÇÃO de cadastro (sem backend)
-      console.log("Dados do usuário:", data);
+      await axios.post('http://localhost:8080/api/v1/Usuario', {
+        nome: data.name,
+        email: data.email,
+        senha: data.password,
+        nivel_acesso: 'CLIENTE',
+        data_cadastro: new Date().toISOString(),
+        statusUsuario: true,
+      });
 
       setSuccess("Cadastro realizado com sucesso!");
 
-      // 👉 redireciona direto
+      // 🔥 redirecionamento para Questionario
       setTimeout(() => {
         navigate('/questionario');
-      }, 1000);
+      }, 1500);
 
     } catch (error) {
       setError("Erro ao cadastrar usuário.");

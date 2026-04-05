@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 import logo from '../../assets/logo1.png';
 
@@ -6,7 +7,7 @@ export default function Footer() {
 
     <footer className={styles.footer}>
 
-      {/* 🌊 ONDA NO TOPO (cor da section de cima = branco) */}
+      {/* 🌊 ONDA NO TOPO */}
       <svg
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"
@@ -18,45 +19,67 @@ export default function Footer() {
         />
       </svg>
 
-      <div className={styles.container}>
+      <div className={styles.container}> 
         
         {/* Logo + Stores */}
         <div className={styles.left}>
           <img src={logo} alt="BabyBuddy Logo" className={styles.logo} />
 
           <div className={styles.stores}>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-              alt="Google Play"
-              className={styles.storeIcon}
-            />
-            <img
-              src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-              alt="App Store"
-              className={styles.storeIcon}
-            />
+            
+            <a 
+              href="https://play.google.com/store" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Get it on Google Play"
+                className={`${styles.storeIcon} ${styles.play}`}
+              />
+            </a>
+
+            <a 
+              href="https://www.apple.com/app-store/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="Download on the App Store"
+                className={`${styles.storeIcon} ${styles.apple}`}
+              />
+            </a>
+
           </div>
         </div>
- 
+
         {/* Links */}
         <div className={styles.links}>
           
-          <div>
-            <h4>PRODUTO</h4>
-            <a href="#">Segurança</a>
-            <a href="#">Contato</a>
-          </div>
+        <div>
+
+      <h4>PRODUTO</h4>
+      <a href="#">Segurança</a>
+         <a 
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=babybuddy159@gmail.com&su=Suporte%20-%20BabyBuddy&body=Olá,%20preciso%20de%20ajuda%20com%20o%20seguinte:%0A%0A•%20Descrição%20do%20problema:%0A•%20Dispositivo:%0A•%20Email%20para%20resposta:" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Contato
+            </a>
+       </div>
 
           <div>
             <h4>CONTEÚDO</h4>
-            <a href="#">Artigos</a>
-            <a href="#">Cadastro</a>
+            <a href="/#artigoshome">Artigos</a>
+            <Link to="/cadastro">Cadastro</Link>
           </div>
 
           <div>
             <h4>PRIVACIDADE</h4>
-            <a href="#">Termos de Uso</a>
-            <a href="#">Política de Privacidade</a>
+            <Link to="/termos-de-uso">Termos de Uso</Link>
+            <Link to="/politica-de-privacidade">Política de Privacidade</Link>
           </div>
 
         </div>

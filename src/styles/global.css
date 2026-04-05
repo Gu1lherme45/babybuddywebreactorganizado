@@ -6,10 +6,9 @@
   box-sizing: border-box;
 }
 
-/* leve redução geral */
 html {
   font-size: 15px;
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* 👈 troca aqui */
 }
 
 /* 🔥 garante que nada ultrapasse a tela */

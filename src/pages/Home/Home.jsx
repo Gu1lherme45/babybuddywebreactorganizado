@@ -185,24 +185,36 @@ export default function Home() {
     <h2 className={styles.artigosTitle}>Principais Artigos</h2>
 
     <div className={styles.artigosGrid}>
-      <Link to="/cuidados-bebe" className={styles.artigoCard}>
-        <img src={art1} alt="Cuidados com o bebê" />
-        <h3>CUIDADOS COM O BEBÊ</h3>
-        <p>Tudo que você precisa saber para cuidar do seu bebê.</p>
-      </Link>
+  <Link 
+    to="/cuidados-bebe" 
+    className={styles.artigoCard}
+    onClick={() => window.scrollTo(0, 0)}
+  >
+    <img src={art1} alt="Cuidados com o bebê" />
+    <h3>CUIDADOS COM O BEBÊ</h3>
+    <p>Tudo que você precisa saber para cuidar do seu bebê.</p>
+  </Link>
 
-      <Link to="/tentando-engravidar" className={styles.artigoCard}>
-        <img src={art2} alt="Tentando engravidar" />
-        <h3>TENTANDO ENGRAVIDAR?</h3>
-        <p>Quanto tempo demora a fecundação após a relação sexual?</p>
-      </Link>
+  <Link 
+    to="/tentando-engravidar" 
+    className={styles.artigoCard}
+    onClick={() => window.scrollTo(0, 0)}
+  >
+    <img src={art2} alt="Tentando engravidar" />
+    <h3>TENTANDO ENGRAVIDAR?</h3>
+    <p>Quanto tempo demora a fecundação após a relação sexual?</p>
+  </Link>
 
-      <Link to="/periodo-gestacional" className={styles.artigoCard}>
-        <img src={art3} alt="Período gestacional" />
-        <h3>PERÍODO GESTACIONAL</h3>
-        <p>Tudo que você precisa saber sobre o período gestacional!</p>
-      </Link>
-    </div>
+  <Link 
+    to="/periodo-gestacional" 
+    className={styles.artigoCard}
+    onClick={() => window.scrollTo(0, 0)}
+  >
+    <img src={art3} alt="Período gestacional" />
+    <h3>PERÍODO GESTACIONAL</h3>
+    <p>Tudo que você precisa saber sobre o período gestacional!</p>
+  </Link>
+</div>
 
   </div>
 </section>

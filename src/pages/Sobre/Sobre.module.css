@@ -1,0 +1,191 @@
+.container {
+  padding-top: 190px;
+  background: #ffffff;
+
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  padding: 0 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  color: #e91e63;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.hero p {
+  margin-top: 10px;
+  color: #000000;
+}
+
+/* GRID INFO */
+.gridInfo {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.card {
+  display: flex;
+  gap: 15px;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.card img {
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+/* FAIXA */
+.highlight {
+  margin: 140px 20px 0 20px; /* 👈 AQUI AUMENTEI DE VERDADE */
+  background: #FFEEF0;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.highlight p {
+  color: #e91e63;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* FEATURES */
+.features {
+  margin-top: 130px;
+  display: flex;
+  justify-content: space-between;
+  gap: 90px;
+  padding: 0 20px;
+}
+
+.feature {
+  flex: 1;
+  max-width: 100%;
+  text-align: left;
+}
+
+.feature img {
+  width: 160px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  color: #e91e63;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+/* QUOTE */
+.quote {
+  margin: 120px 20px; /* 👈 também organizei aqui */
+  background: #FFEEF0;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+.quote p {
+  color: #e91e63;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.quote span {
+  display: block;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+}
+
+/* ========================= */
+/* 📱 MOBILE */
+/* ========================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 20px;
+  }
+
+  .gridInfo {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .card img {
+    width: 50px;
+  }
+
+  .highlight {
+    margin: 80px 15px 0 15px; /* 👈 ajustado pro mobile */
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .feature img {
+    width: 100px;
+  }
+
+  .quote {
+    margin: 80px 15px;
+    padding: 25px;
+  }
+
+  .quote p {
+    font-size: 16px;
+  }
+}
+
+/* ========================= */
+/* 📲 TABLETS */
+/* ========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .features {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature {
+    max-width: 280px;
+  }
+}
+
+/* ========================= */
+/* 💻 TELAS GRANDES */
+/* ========================= */
+@media (min-width: 1400px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+}

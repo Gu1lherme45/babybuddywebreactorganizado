@@ -1,4 +1,4 @@
- /* FUNDO GERAL */
+/* FUNDO GERAL */
 body {
   background-color: #ffffff;
   margin: 0;
@@ -9,7 +9,7 @@ body {
 .container {
   max-width: 900px;
   margin: 120px auto 0;
-  padding: 50px 30px 70px;
+  padding: 190px 30px 70px; /* <-- ALTERADO AQUI */
   font-family: 'League Spartan', sans-serif;
   color: #2b2b2b;
   line-height: 1.7;
@@ -64,7 +64,7 @@ body {
   width: 100%;
   border-radius: 16px;
   overflow: hidden;
-  margin-top: -90px;
+  margin-top: -120px;
 }
 
 .hero img {
@@ -134,5 +134,111 @@ body {
 
   body {
     background: #ffffff;
+  }
+}
+/* ============================= */
+/* 📱 RESPONSIVIDADE PROFISSIONAL */
+/* ============================= */
+
+/* TABLETS (até 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 92%;
+    padding: 140px 24px 60px;
+    margin: 80px auto 0;
+  }
+
+  .header {
+    gap: 30px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+}
+
+/* CELULARES (até 768px) */
+@media (max-width: 768px) {
+  .container {
+    max-width: 94%;
+    padding: 120px 20px 50px;
+    margin: 60px auto 0;
+    border-radius: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .headerText {
+    max-width: 100%;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .section h2 {
+    font-size: 22px;
+  }
+
+  .section h3 {
+    font-size: 17px;
+  }
+
+  .section p {
+    font-size: 14px;
+  }
+
+  .hero,
+  .heroImage {
+    margin-top: -60px;
+    border-radius: 12px;
+  }
+
+  .image {
+    width: 220px;
+    margin: 0 auto;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}
+
+/* CELULARES PEQUENOS (até 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 110px 16px 40px;
+    margin-top: 40px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+  }
+
+  .section p {
+    font-size: 13.5px;
+  }
+
+  .meta {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
