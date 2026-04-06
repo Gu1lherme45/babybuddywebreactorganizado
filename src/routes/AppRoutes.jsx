@@ -3,15 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import ScrollToTop from '../components/ScrollToTop';
 
-// páginas
 import Home from '../pages/Home/Home';
+import Sobre from '../pages/Sobre/Sobre';
 import Cadastro from '../pages/Cadastro/Cadastro';
 
 import PeriodoGestacional from '../pages/PeriodoGestacional/PeriodoGestacional';
 import CuidadosBebe from '../pages/CuidadosBebe/CuidadosBebe';
 import TentandoEngravidar from '../pages/TentandoEngravidar/TentandoEngravidar';
 
-// 👇 IMPORT DO QUESTIONÁRIO
 import Questionario from '../pages/Questionario/Questionario';
 
 import PoliticaDePrivacidade from '../pages/PoliticaDePrivacidade/PoliticaDePrivacidade';
@@ -24,6 +23,7 @@ export default function AppRoutes() {
 
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/sobre" element={<Sobre />} />
           <Route path="/" element={<Home />} />
           <Route path="/cadastro" element={<Cadastro />} />
 
@@ -31,7 +31,6 @@ export default function AppRoutes() {
           <Route path="/cuidados-bebe" element={<CuidadosBebe />} />
           <Route path="/tentando-engravidar" element={<TentandoEngravidar />} />
 
-          {/* 👇 NOVA ROTA DO QUESTIONÁRIO */}
           <Route path="/questionario" element={<Questionario />} />
 
           <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />

@@ -28,8 +28,8 @@
 }
 
 .left img {
-  width: 400px;
-  max-width: 500px;
+  width: 530px;
+  max-width: 550px;
 }
 
 
@@ -157,8 +157,8 @@
 }
 
 .babyImg img {
-  width: 700px;
-  height: auto;
+  width: 750px;
+  max-width: 850px;
 }
 
 .babyCards {

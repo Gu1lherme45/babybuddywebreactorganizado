@@ -3,51 +3,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f7f7f7;
+  background: #ffffff;
 }
 
-.welcome,
-.questionario {
+/* WELCOME */
+.welcome {
   text-align: center;
-}
-
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
+  max-width: 600px;
 }
 
 h1 {
   color: #d63384;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 48px;
+  font-weight: 700;
 }
 
-h2 {
-  margin-bottom: 20px;
-}
-
-.button {
-  background: #d63384;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  width: 200px;
-}
-
-.progressBar {
+/* QUESTIONÁRIO */
+.questionario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 5px;
-  background: #ddd;
-  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+/* TOPO */
+.top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+.back {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* PROGRESS */
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: #e5d9e0;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -56,4 +55,85 @@ h2 {
   height: 100%;
   background: #d63384;
   transition: width 0.3s ease;
+}
+
+/* LOGO */
+.logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+/* TÍTULO */
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* SELECT */
+.select {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 240px;
+  outline: none;
+  cursor: pointer;
+  background: white;
+}
+
+.select:focus {
+  border-color: #d63384;
+}
+
+/* OPÇÕES */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.option {
+  background: #eee;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.option:hover {
+  background: #e0e0e0;
+}
+
+.selected {
+  background: #d63384;
+  color: white;
+}
+
+/* BOTÃO */
+.button {
+  background: #d63384;
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  background: #c2186a;
 }
