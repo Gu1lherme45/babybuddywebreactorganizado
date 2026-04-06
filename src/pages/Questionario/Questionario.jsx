@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Questionario.module.css";
 import logo from "../../assets/logo2.svg";
+import Lottie from "lottie-react";
+import checkAnimation from "../../assets/check.json";
 
 export default function Questionario() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -18,9 +22,20 @@ export default function Questionario() {
       type: "buttons"
     },
     {
-      question: "Você está em qual trimestre?",
-      options: ["1º trimestre", "2º trimestre", "3º trimestre"],
+      question: "Possui algum problema de saúde?",
+      options: ["Sim", "Não"],
       type: "buttons"
+    },
+    {
+      question: "Seu ciclo menstrual costuma ser regular?",
+      options: ["Sim", "Não"],
+      type: "buttons"
+    },
+    {
+      question: "Você autoriza o uso dessas informações para personalização de conteúdos?",
+      options: ["Sim", "Não"],
+      type: "buttons",
+      hasTerms: true
     }
   ];
 
@@ -33,14 +48,23 @@ export default function Questionario() {
 
   const nextStep = () => {
     if (!answers[step]) return;
-    setStep((prev) => prev + 1);
+
+    if (step === questions.length) {
+      setStep(step + 1);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2500);
+    } else {
+      setStep((prev) => prev + 1);
+    }
   };
 
   const prevStep = () => {
     setStep((prev) => Math.max(prev - 1, 0));
   };
 
-  const progress = ((step - 1) / questions.length) * 100;
+  const progress = (step / questions.length) * 100;
 
   return (
     <div className={styles.container}>
@@ -60,11 +84,8 @@ export default function Questionario() {
       {step > 0 && step <= questions.length && (
         <div className={styles.questionario}>
 
-          {/* TOPO */}
           <div className={styles.top}>
-            <span className={styles.back} onClick={prevStep}>
-              ‹
-            </span>
+            <span className={styles.back} onClick={prevStep}>‹</span>
 
             <div className={styles.progressBar}>
               <div
@@ -78,7 +99,7 @@ export default function Questionario() {
 
           <h2>{questions[step - 1].question}</h2>
 
-          {/* SELECT OU BOTÕES */}
+          {/* SELECT */}
           {questions[step - 1].type === "select" ? (
             <select
               className={styles.select}
@@ -108,6 +129,16 @@ export default function Questionario() {
             </div>
           )}
 
+          {/* TERMOS */}
+          {questions[step - 1].hasTerms && (
+            <p
+              className={styles.terms}
+              onClick={() => navigate("/termos")}
+            >
+              Ler termos de uso
+            </p>
+          )}
+
           <button
             className={styles.button}
             onClick={nextStep}
@@ -118,10 +149,13 @@ export default function Questionario() {
         </div>
       )}
 
-      {/* FINAL */}
+      {/* FINAL COM ANIMAÇÃO */}
       {step > questions.length && (
         <div className={styles.welcome}>
-          <h1>Finalizado 🎉</h1>
+          <div className={styles.animation}>
+            <Lottie animationData={checkAnimation} loop={false} />
+          </div>
+          <h1>Tudo pronto! 💖</h1>
         </div>
       )}
     </div>
