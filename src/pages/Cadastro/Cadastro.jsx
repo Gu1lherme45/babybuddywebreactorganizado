@@ -48,39 +48,39 @@ export default function Cadastro() {
     }
   });
 
-  const onSubmit = async (data) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError("");
     setSuccess("");
 
+    const data = {
+      nome: document.getElementById('nome').value,
+      email: document.getElementById('email').value,
+      senha: document.getElementById('senha').value,
+      nivelAcesso: 'USUARIO',
+    };
+
     try {
-      // 🔥 SIMULAÇÃO de cadastro (sem backend)
-      console.log("Dados do usuário:", data);
+      const response = await fetch('http://localhost:8080/api/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      setSuccess("Cadastro realizado com sucesso!");
+      if (!response.ok) {
+        const msg = await response.text();
+        throw new Error(msg || 'Erro ao cadastrar usuário.');
+      }
 
-      // 👉 redireciona direto
-      setTimeout(() => {
-        navigate('/questionario');
-      }, 1000);
+      setSuccess('Cadastro realizado com sucesso!');
+      setTimeout(() => navigate('/questionario'), 1000);
 
-    } catch (error) {
-      setError("Erro ao cadastrar usuário.");
+    } catch (err) {
+      setError(err.message || 'Erro ao cadastrar usuário.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const data = {
-      name: document.getElementById('nome').value,
-      email: document.getElementById('email').value,
-      password: document.getElementById('senha').value,
-    };
-
-    onSubmit(data);
   };
 
   return (
