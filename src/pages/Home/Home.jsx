@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from './Home.module.css';
-import imgGravida from '../../assets/gravida.svg';
+
+import background from '../../assets/backgroundhome.svg';
 import imgMobile from "../../assets/mobile.svg";
 import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
@@ -10,11 +11,9 @@ import art3 from "../../assets/art3.png";
 import facilidade from "../../assets/facilidade.png";
 import informacoes from "../../assets/informações.png";
 import privacidade from "../../assets/privacidade.png";
-import nuvens from "../../assets/nuvens.svg";
 
-export default function Home() {
+export default function Home() { 
 
- 
   const location = useLocation();
 
   useEffect(() => {
@@ -30,29 +29,29 @@ export default function Home() {
     }
   }, [location]);
 
-
   return (
     <div className={styles.home}>
       
       {/* HERO */}
-      <section id="inicio" className={styles.hero}>
+      <section 
+        id="inicio" 
+        className={styles.hero}
+        style={{ backgroundImage: `url(${background})` }}
+      >
         <div className={styles.container}>
 
           <div className={styles.left}>
-            <img src={imgGravida} alt="Gestante" />
+            <h1>O BabyBudy acompanha você <br></br> em cada etapa da maternidade </h1>
+
+            <p>
+              Pensado especialmente para mães de primeira viagem, o aplicativo oferece
+              suporte para acompanhar o desenvolvimento do seu bebê e
+              tornar sua rotina mais leve, organizada e segura.
+            </p>
           </div>
 
           <div className={styles.right}>
-            <h1>
-              BabyBuddy seu app de monitoramento gestacional
-            </h1>
-
-            <p>
-              O Baby Buddy é um aplicativo projetado para ajudar mães,
-              especialmente as de primeira viagem, a acompanharem o
-              desenvolvimento de seus bebês e gerenciarem a maternidade
-              de forma eficiente.
-            </p>
+            {/* vazio porque a imagem já está no background */}
           </div>
 
         </div>
