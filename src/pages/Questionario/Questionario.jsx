@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Questionario.module.css";
 import logo from "../../assets/logo2.svg";
+import heartQuestion from "../../assets/heartquestion.png";
+import questionIcon from "../../assets/questionicon.svg";
 import Lottie from "lottie-react";
 import checkAnimation from "../../assets/check.json";
 
@@ -32,7 +34,8 @@ export default function Questionario() {
       type: "buttons"
     },
     {
-      question: "Você autoriza o uso dessas informações para personalização de conteúdos?",
+      question:
+        "Você autoriza o uso dessas informações para personalização de conteúdos?",
       options: ["Sim", "Não"],
       type: "buttons",
       hasTerms: true
@@ -71,13 +74,33 @@ export default function Questionario() {
 
       {/* TELA INICIAL */}
       {step === 0 && (
-        <div className={styles.welcome}>
-          <h1>Bem vinda ao BabyBuddy!</h1>
+        <section className={styles.firstSection}>
 
-          <button onClick={() => setStep(1)} className={styles.button}>
-            Vamos começar
+          <div className={styles.iconArea}>
+            <img
+              src={heartQuestion}
+              alt="Heart"
+              className={styles.heartImage}
+            />
+          </div>
+
+          <h1>Sua saúde importa</h1>
+
+          <p>
+            Para oferecer a melhor experiência personalizada,
+            começaremos com um rápido questionário de saúde.
+          </p>
+
+          <button
+            onClick={() => setStep(1)}
+            className={styles.startButton}
+          >
+            INICIAR QUESTIONÁRIO DE SAÚDE
           </button>
-        </div>
+
+        
+
+        </section>
       )}
 
       {/* QUESTIONÁRIO */}
@@ -85,7 +108,12 @@ export default function Questionario() {
         <div className={styles.questionario}>
 
           <div className={styles.top}>
-            <span className={styles.back} onClick={prevStep}>‹</span>
+            <span
+              className={styles.back}
+              onClick={prevStep}
+            >
+              ‹
+            </span>
 
             <div className={styles.progressBar}>
               <div
@@ -95,7 +123,11 @@ export default function Questionario() {
             </div>
           </div>
 
-          <img src={logo} alt="BabyBuddy" className={styles.logo} />
+          <img
+            src={logo}
+            alt="BabyBuddy"
+            className={styles.logo}
+          />
 
           <h2>{questions[step - 1].question}</h2>
 
@@ -107,6 +139,7 @@ export default function Questionario() {
               onChange={(e) => handleSelect(e.target.value)}
             >
               <option value="">Selecionar</option>
+
               {questions[step - 1].options.map((opt, index) => (
                 <option key={index} value={opt}>
                   {opt}
@@ -119,7 +152,9 @@ export default function Questionario() {
                 <button
                   key={index}
                   className={`${styles.option} ${
-                    answers[step] === opt ? styles.selected : ""
+                    answers[step] === opt
+                      ? styles.selected
+                      : ""
                   }`}
                   onClick={() => handleSelect(opt)}
                 >
@@ -149,12 +184,16 @@ export default function Questionario() {
         </div>
       )}
 
-      {/* FINAL COM ANIMAÇÃO */}
+      {/* FINAL */}
       {step > questions.length && (
         <div className={styles.welcome}>
           <div className={styles.animation}>
-            <Lottie animationData={checkAnimation} loop={false} />
+            <Lottie
+              animationData={checkAnimation}
+              loop={false}
+            />
           </div>
+
           <h1>Tudo pronto! 💖</h1>
         </div>
       )}

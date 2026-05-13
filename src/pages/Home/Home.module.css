@@ -1,94 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&display=swap');
 
 .home {
-  font-family: 'League Spartan', sans-serif;
   width: 100%;
   overflow-x: hidden;
+  font-family: 'League Spartan', sans-serif;
+  background: #ffffff;
 }
 
 /* HERO */
+
 .hero {
   width: 100%;
-  min-height: 115vh; /* 🔥 AUMENTA A HOME */
+  min-height: 100vh;
 
   display: flex;
   align-items: center;
 
-  background-size: cover;
-  background-position: right 20% top 80px; /* 🔥 NÃO CORTA A CABEÇA */
-  background-repeat: no-repeat;
-
-  padding: 120px 20px;
-  padding-top: 220px;
+  padding: 120px 30px 80px;
 }
 
 /* CONTAINER */
+
 .container {
   width: 100%;
   max-width: 1200px;
+
   margin: 0 auto;
 
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  gap: 100px;
+
+  padding-left: 60px;
 }
 
 /* TEXTO */
+
 .left {
-  max-width: 520px;
+  max-width: 540px;
+  z-index: 2;
 }
 
-/* TÍTULO */
-.left h1 {
-  font-size: 3.2rem; /* 🔥 MAIS IMPACTO */
-  color: #d81b60;
+.subtitle {
+  display: inline-block;
+
+  color: #DC2B74;
+  font-size: 0.95rem;
   font-weight: 700;
-  line-height: 1.0;
-  margin-bottom: 24px;
+
+  margin-bottom: 22px;
 }
 
-/* TEXTO */
+.left h1 {
+  font-size: 4rem;
+  line-height: 0.95;
+  font-weight: 800;
+
+  color: #111;
+
+  margin-bottom: 25px;
+}
+
+.left h1 span {
+  color: #DC2B74;
+}
+
 .left p {
-  font-size: 1.15rem;
-  color: #333;
-  line-height: 1.7;
+  font-size: 1.25rem;
+  line-height: 1.6;
+
+  color: #5b5b5b;
+
+  margin-bottom: 35px;
 }
 
-/* ============================= */
-/* RESPONSIVO HERO */
-/* ============================= */
+/* BOTÃO */
 
-@media (max-width: 900px) {
-  .hero {
-    background-position: center;
-    min-height: auto;
-    padding: 120px 20px;
-  }
+.button {
+  border: none;
+  outline: none;
+
+  background: #DC2B74;
+  color: white;
+
+  padding: 18px 30px;
+
+  border-radius: 14px;
+
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: 'League Spartan', sans-serif;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  box-shadow: 0 8px 20px rgba(220, 43, 116, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+
+
+/* BENEFÍCIOS */
+
+.features {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  margin-top: 45px;
+
+  flex-wrap: wrap;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature span {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.2;
+}
+
+/* ÍCONES */
+
+.icon {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background: #FFE5EF;
+  color: #DC2B74;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.4rem;
+}
+
+/* IMAGEM */
+
+.right {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGEM DA GRÁVIDA */
+
+.image {
+  width: 590px;
+  max-width: 100%;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1000px) {
 
   .container {
-    justify-content: center;
-    text-align: center;
     flex-direction: column;
+    text-align: center;
   }
 
-  .left h1 {
-    font-size: 2.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 80px 16px;
-  }
-
-  .left h1 {
-    font-size: 1.8rem;
+  .left {
+    max-width: 100%;
   }
 
   .left p {
-    font-size: 1rem;
+    margin: 0 auto 35px;
   }
+
+  .features {
+    justify-content: center;
+  }
+
 }
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 100px 20px 60px;
+  }
+
+  .left h1 {
+    font-size: 2.7rem;
+  }
+
+  .left p {
+    font-size: 1.1rem;
+  }
+
+  .image {
+    width: 320px;
+  }
+
+  .features {
+    gap: 18px;
+  }
+
+}
+
+
 
 /* ============================= */
 /* PADRÃO DAS SECTIONS */

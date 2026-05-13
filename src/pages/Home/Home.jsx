@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from './Home.module.css';
 
-import background from '../../assets/backgroundhome.svg';
+
+
 import imgMobile from "../../assets/mobile.svg";
 import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
@@ -12,7 +13,16 @@ import facilidade from "../../assets/facilidade.png";
 import informacoes from "../../assets/informações.png";
 import privacidade from "../../assets/privacidade.png";
 
-export default function Home() { 
+import imgGravida from "../../assets/imggravidahome2.svg";
+
+import {
+  ShieldCheck,
+  Heart,
+  BarChart3,
+  ArrowRight
+} from "lucide-react";
+
+export default function Home() {
 
   const location = useLocation();
 
@@ -30,32 +40,95 @@ export default function Home() {
   }, [location]);
 
   return (
-    <div className={styles.home}>
-      
-      {/* HERO */}
-      <section 
-        id="inicio" 
-        className={styles.hero}
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <div className={styles.container}>
+  <div className={styles.home}>
+    
+    {/* HERO */}
+    <section
+      id="inicio"
+      className={styles.hero}
+    >
 
-          <div className={styles.left}>
-            <h1>O BabyBudy acompanha você <br></br> em cada etapa da maternidade </h1>
+      <div className={styles.container}>
 
-            <p>
-              Pensado especialmente para mães de primeira viagem, o aplicativo oferece
-              suporte para acompanhar o desenvolvimento do seu bebê e
-              tornar sua rotina mais leve, organizada e segura.
-            </p>
-          </div>
+        {/* TEXTO */}
+        <div className={styles.left}>
 
-          <div className={styles.right}>
-            {/* vazio porque a imagem já está no background */}
+          <span className={styles.subtitle}>
+            ♡ Monitoramento Gestacional
+          </span>
+
+          <h1>
+            Cuidado e tecnologia <br />
+            em <span>cada etapa.</span>
+          </h1>
+
+          <p>
+            Acompanhe sua gestação com segurança e praticidade.<br></br>
+            Informações personalizadas para você e seu bebê.
+          </p>
+
+          <Link to="/cadastro">
+             <button className={styles.button}>
+              Começar agora!
+          <ArrowRight size={20} />
+         </button>
+       </Link>
+
+
+          {/* BENEFÍCIOS */}
+          <div className={styles.features}>
+
+            <div className={styles.feature}>
+              <div className={styles.icon}>
+                <ShieldCheck size={20} />
+              </div>
+
+              <span>
+                Seguro e <br />
+                confiável
+              </span>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles.icon}>
+                <BarChart3 size={20} />
+              </div>
+
+              <span>
+                Acompanhamento <br />
+                inteligente
+              </span>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles.icon}>
+                <Heart size={20} />
+              </div>
+
+              <span>
+                Feito para você <br />
+                e seu bebê
+              </span>
+            </div>
+
           </div>
 
         </div>
-      </section>
+
+       {/* IMAGEM */}
+<div className={styles.right}>
+
+  <img
+    src={imgGravida}
+    alt="Gestante"
+    className={styles.image}
+  />
+
+</div>
+
+      </div>
+
+    </section>
 
 
 
