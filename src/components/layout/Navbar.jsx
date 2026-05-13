@@ -1,7 +1,15 @@
 import styles from './Navbar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
+  const location = useLocation();
+
+  // detecta a página do questionário
+  const isQuestionario = location.pathname === "/questionario";
+
+  // se estiver no questionário, NÃO mostra a navbar
+  if (isQuestionario) return null;
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>

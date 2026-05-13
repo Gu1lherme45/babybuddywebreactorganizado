@@ -54,13 +54,12 @@ export default function Home() {
         <div className={styles.left}>
 
           <span className={styles.subtitle}>
-            ♡ Monitoramento Gestacional
+            ♡ BabyBuddy
           </span>
 
-          <h1>
-            Cuidado e tecnologia <br />
-            em <span>cada etapa.</span>
-          </h1>
+        <h1>Cuidado e tecnologia <br />
+          em <span>cada etapa.</span>
+        </h1>
 
           <p>
             Acompanhe sua gestação com segurança e praticidade.<br></br>
@@ -68,7 +67,7 @@ export default function Home() {
           </p>
 
           <Link to="/cadastro">
-             <button className={styles.button}>
+             <button className={styles.button}> 
               Começar agora!
           <ArrowRight size={20} />
          </button>

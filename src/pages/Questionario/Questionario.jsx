@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Questionario.module.css";
+
 import logo from "../../assets/logo2.svg";
 import heartQuestion from "../../assets/heartquestion.png";
-import questionIcon from "../../assets/questionicon.svg";
-import Lottie from "lottie-react";
-import checkAnimation from "../../assets/check.json";
+
+import { ArrowRight } from "lucide-react";
 
 export default function Questionario() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
+
   const navigate = useNavigate();
 
   const questions = [
@@ -52,12 +53,11 @@ export default function Questionario() {
   const nextStep = () => {
     if (!answers[step]) return;
 
+    /* ALTERAÇÃO AQUI */
+    /* removido o setTimeout e navigate automático */
+
     if (step === questions.length) {
       setStep(step + 1);
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 2500);
     } else {
       setStep((prev) => prev + 1);
     }
@@ -95,10 +95,13 @@ export default function Questionario() {
             onClick={() => setStep(1)}
             className={styles.startButton}
           >
-            INICIAR QUESTIONÁRIO DE SAÚDE
-          </button>
+            <span>INICIAR QUESTIONÁRIO DE SAÚDE</span>
 
-        
+            <ArrowRight
+              size={24}
+              className={styles.arrowIcon}
+            />
+          </button>
 
         </section>
       )}
@@ -164,16 +167,6 @@ export default function Questionario() {
             </div>
           )}
 
-          {/* TERMOS */}
-          {questions[step - 1].hasTerms && (
-            <p
-              className={styles.terms}
-              onClick={() => navigate("/termos")}
-            >
-              Ler termos de uso
-            </p>
-          )}
-
           <button
             className={styles.button}
             onClick={nextStep}
@@ -181,22 +174,60 @@ export default function Questionario() {
           >
             Continuar
           </button>
+
+          {/* TERMOS */}
+          {questions[step - 1].hasTerms && (
+            <p className={styles.terms}>
+              <Link to="/termos-de-uso">
+                Ler termos de uso
+              </Link>
+            </p>
+          )}
+
         </div>
       )}
 
       {/* FINAL */}
       {step > questions.length && (
-        <div className={styles.welcome}>
-          <div className={styles.animation}>
-            <Lottie
-              animationData={checkAnimation}
-              loop={false}
-            />
+        <div className={styles.finishContainer}>
+
+          <div className={styles.finishIllustration}>
+            <div className={styles.circle}></div>
+
+            <div className={styles.clipboard}>
+              <div className={styles.clipHeader}></div>
+
+              <div className={styles.clipLines}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <div className={styles.checkIcon}>
+              ✓
+            </div>
           </div>
 
-          <h1>Tudo pronto! 💖</h1>
+          <h1 className={styles.finishTitle}>
+            Tudo pronto!
+          </h1>
+
+          <p className={styles.finishText}>
+            Sua jornada com o BabyBuddy acabou de começar.
+          </p>
+
+          <button
+            className={styles.finishButton}
+            onClick={() => navigate("/login")}
+          >
+            Ir para o login
+          </button>
+
         </div>
       )}
+
     </div>
   );
 }
