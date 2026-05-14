@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap');
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #ffffff;
+
+  font-family: 'League Spartan', sans-serif;
+
+  padding: 145px 24px 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+/* =========================
+   ÁREA CENTRAL
+========================= */
+
+.hero,
+.section {
+  width: 100%;
+  max-width: 980px;
+}
+
+/* =========================
+   HERO / TOPO
+========================= */
+
+.hero {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 65px;
+}
+
+.heroText {
+  max-width: 560px;
+}
+
+.heroText h1 {
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+
+  color: #1f2937;
+
+  margin-bottom: 16px;
+}
+
+.heroText h1 span {
+  color: #ff4f87;
+}
+
+.heroText p {
+  font-size: 17px;
+  line-height: 1.7;
+
+  color: #6b7280;
+}
+
+/* PERFIL */
+
+.topBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  margin-bottom: 8px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  cursor: pointer;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #1f2937;
+}
+
+/* REMOVE BANNER */
+.heroBanner {
+  display: none;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section {
+  width: 100%;
+
+  margin-bottom: 60px;
+}
+
+.sectionHeader {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 22px;
+}
+
+.sectionHeader h2 {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+/* REMOVE VER TODOS */
+
+.sectionHeader button {
+  display: none;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  gap: 20px;
+}
+
+.card {
+  width: 220px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.cardImage {
+  width: 100%;
+  height: 140px;
+
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 16px;
+}
+
+.category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  color: #ff4f87;
+}
+
+.cardContent h3 {
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 700;
+
+  color: #111827;
+
+  margin: 12px 0;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+.time p {
+  margin: 0;
+}
+
+/* REMOVE SETAS */
+
+.arrowButton {
+  display: none;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 125px 18px 55px;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+
+    gap: 24px;
+  }
+
+  .topBar {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .heroText h1 {
+    font-size: 34px;
+  }
+
+  .heroText p {
+    font-size: 15px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 22px;
+  }
+
+  .cards {
+    gap: 16px;
+  }
+
+  .card {
+    width: 190px;
+  }
+
+  .cardImage {
+    height: 120px;
+  }
+
+  .cardContent h3 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .heroText h1 {
+    font-size: 28px;
+  }
+
+  .heroText p {
+    font-size: 14px;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 260px;
+  }
+}

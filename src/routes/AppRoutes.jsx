@@ -6,6 +6,8 @@ import ScrollToTop from '../components/ScrollToTop';
 import Home from '../pages/Home/Home';
 import Sobre from '../pages/Sobre/Sobre';
 import Cadastro from '../pages/Cadastro/Cadastro';
+import Login from '../pages/Login/Login';
+import Perfil from '../pages/Perfil/Perfil';
 
 import PeriodoGestacional from '../pages/PeriodoGestacional/PeriodoGestacional';
 import CuidadosBebe from '../pages/CuidadosBebe/CuidadosBebe';
@@ -23,18 +25,49 @@ export default function AppRoutes() {
 
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/sobre" element={<Sobre />} />
+
+          {/* PRINCIPAIS */}
           <Route path="/" element={<Home />} />
+          <Route path="/sobre" element={<Sobre />} />
+
+          {/* AUTENTICAÇÃO */}
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/perfil" element={<Perfil />} />
 
-          <Route path="/periodo-gestacional" element={<PeriodoGestacional />} />
-          <Route path="/cuidados-bebe" element={<CuidadosBebe />} />
-          <Route path="/tentando-engravidar" element={<TentandoEngravidar />} />
+          {/* ARTIGOS */}
+          <Route
+            path="/periodo-gestacional"
+            element={<PeriodoGestacional />}
+          />
 
-          <Route path="/questionario" element={<Questionario />} />
+          <Route
+            path="/cuidados-bebe"
+            element={<CuidadosBebe />}
+          />
 
-          <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />
-          <Route path="/termos-de-uso" element={<TermosDeUso />} />
+          <Route
+            path="/tentando-engravidar"
+            element={<TentandoEngravidar />}
+          />
+
+          {/* QUESTIONÁRIO */}
+          <Route
+            path="/questionario"
+            element={<Questionario />}
+          />
+
+          {/* POLÍTICAS */}
+          <Route
+            path="/politica-de-privacidade"
+            element={<PoliticaDePrivacidade />}
+          />
+
+          <Route
+            path="/termos-de-uso"
+            element={<TermosDeUso />}
+          />
+
         </Route>
       </Routes>
     </BrowserRouter>

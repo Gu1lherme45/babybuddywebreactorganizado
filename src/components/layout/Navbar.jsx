@@ -4,11 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Navbar() {
   const location = useLocation();
 
-  // detecta a página do questionário
+  // detecta páginas
   const isQuestionario = location.pathname === "/questionario";
+  const isCadastro = location.pathname === "/cadastro";
+  const isLogin = location.pathname === "/login";
 
-  // se estiver no questionário, NÃO mostra a navbar
-  if (isQuestionario) return null;
+  // esconde navbar nessas páginas
+  if (isQuestionario || isCadastro || isLogin) return null;
 
   return (
     <nav className={styles.navbar}>
@@ -20,8 +22,14 @@ export default function Navbar() {
           <Link to="/#artigoshome">Artigos</Link>
         </div>
 
-        <div className={styles.button}>
-          <Link to="/cadastro">Cadastre-se</Link>
+        <div className={styles.actions}>
+          <Link to="/login" className={styles.login}>
+            Login
+          </Link>
+
+          <Link to="/cadastro" className={styles.cadastro}>
+            Cadastre-se
+          </Link>
         </div>
 
       </div>

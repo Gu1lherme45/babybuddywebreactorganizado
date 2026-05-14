@@ -66,7 +66,7 @@ export default function Footer() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Contato
+              Suporte
             </a>
        </div>
 

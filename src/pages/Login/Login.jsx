@@ -1,0 +1,133 @@
+import React, { useState } from 'react';
+import styles from './Login.module.css';
+
+import { Link, useNavigate } from 'react-router-dom';
+
+import {
+  FiMail,
+  FiLock,
+  FiEye,
+  FiEyeOff,
+} from 'react-icons/fi';
+
+
+const Login = () => {
+  const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
+    email: '',
+    senha: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // LOGIN
+    console.log(formData);
+
+    // REDIRECIONA PARA PERFIL
+    navigate('/perfil');
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+
+       
+        <h1 className={styles.title}>Login</h1>
+
+        <p className={styles.subtitle}>
+          Digite seu e-mail e senha para acessar sua conta
+        </p>
+
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+        >
+
+          {/* EMAIL */}
+          <div className={styles.inputGroup}>
+            <label>E-mail</label>
+
+            <div className={styles.inputWrapper}>
+              <FiMail className={styles.icon} />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="seu@email.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          {/* SENHA */}
+          <div className={styles.inputGroup}>
+            <label>Senha</label>
+
+            <div className={styles.inputWrapper}>
+              <FiLock className={styles.icon} />
+
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="senha"
+                placeholder="Digite sua senha"
+                value={formData.senha}
+                onChange={handleChange}
+                required
+              />
+
+              <button
+                type="button"
+                className={styles.eyeButton}
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
+              >
+                {showPassword ? (
+                  <FiEyeOff />
+                ) : (
+                  <FiEye />
+                )}
+              </button>
+            </div>
+          </div>
+
+         
+
+          <button
+            type="submit"
+            className={styles.loginButton}
+          >
+            Login
+          </button>
+
+          <div className={styles.divider}>
+            <span>ou</span>
+          </div>
+
+          <p className={styles.registerText}>
+            Ainda não tem uma conta?{' '}
+            <Link to="/cadastro">
+              Cadastre-se
+            </Link>
+          </p>
+
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

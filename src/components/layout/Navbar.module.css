@@ -5,12 +5,12 @@
   display: flex;
   justify-content: center;
 
-  position: absolute;  /* 🔥 tira do fluxo da página */
+  position: absolute;
   top: 0;
   left: 0;
 
   z-index: 1000;
-  padding-top: 60px; /* só visual, não empurra conteúdo */
+  padding-top: 60px;
 }
 
 .container {
@@ -39,7 +39,7 @@
 
 .links a {
   text-decoration: none;
-  color: #DA1D6B;
+  color: #515151;
   font-size: 19px;
   font-weight: 700;
   transition: all 0.2s ease;
@@ -49,8 +49,30 @@
   filter: brightness(1.15);
 }
 
-/* BOTÃO */
-.button a {
+/* AÇÕES */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* LOGIN */
+.login {
+  text-decoration: none;
+  color: #d81b78;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.login:hover {
+  filter: brightness(1.1);
+}
+
+/* CADASTRO */
+.cadastro {
   text-decoration: none;
   background: linear-gradient(90deg, #ff4fa0, #d81b78);
   color: #fff;
@@ -64,7 +86,7 @@
   transition: all 0.2s ease;
 }
 
-.button a:hover {
+.cadastro:hover {
   filter: brightness(1.05);
 }
 
@@ -88,7 +110,11 @@
     font-size: 17px;
   }
 
-  .button a {
+  .login {
+    font-size: 15px;
+  }
+
+  .cadastro {
     font-size: 15px;
     padding: 8px 16px;
   }
@@ -105,7 +131,16 @@
     display: none;
   }
 
-  .button a {
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .login {
+    font-size: 14px;
+  }
+
+  .cadastro {
     font-size: 14px;
     padding: 8px 14px;
   }
@@ -118,7 +153,11 @@
     padding: 10px 14px;
   }
 
-  .button a {
+  .login {
+    font-size: 13px;
+  }
+
+  .cadastro {
     font-size: 13px;
     padding: 7px 12px;
   }
