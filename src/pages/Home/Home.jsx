@@ -53,9 +53,7 @@ export default function Home() {
         {/* TEXTO */}
         <div className={styles.left}>
 
-          <span className={styles.subtitle}>
-            ♡ BabyBuddy
-          </span>
+         
 
         <h1>Cuidado e tecnologia <br />
           em <span>cada etapa.</span>

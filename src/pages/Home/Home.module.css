@@ -18,7 +18,7 @@
   align-items: center;
 
   padding: 120px 30px 80px;
-}
+} 
 
 /* CONTAINER */
 
@@ -56,7 +56,7 @@
 
 .left h1 {
   font-size: 3.5rem;
-  line-height: 1.2;
+  line-height: 1.0;
   font-weight: 800;
 
   color: #111;
@@ -70,7 +70,7 @@
 
 .left p {
   font-size: 1.25rem;
-  line-height: 1.6;
+  line-height: 1.4;
 
   color: #5b5b5b;
 
@@ -170,6 +170,7 @@
   width: 100%;
   max-width: 720px;
   height: auto;
+  margin-top: -70px;
 }
 
 /* RESPONSIVO */

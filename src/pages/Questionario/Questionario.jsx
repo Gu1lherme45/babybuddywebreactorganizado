@@ -16,7 +16,7 @@ export default function Questionario() {
   const questions = [
     {
       question: "Qual o seu tipo sanguíneo?",
-      options: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
+      options: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"], 
       type: "select"
     },
     {
@@ -53,8 +53,7 @@ export default function Questionario() {
   const nextStep = () => {
     if (!answers[step]) return;
 
-    /* ALTERAÇÃO AQUI */
-    /* removido o setTimeout e navigate automático */
+ 
 
     if (step === questions.length) {
       setStep(step + 1);
