@@ -13,7 +13,7 @@ import facilidade from "../../assets/facilidade.png";
 import informacoes from "../../assets/informações.png";
 import privacidade from "../../assets/privacidade.png";
 
-import imgGravida from "../../assets/imggravidahome2.svg";
+import imgGravida from "../../assets/imggravidahome3.svg";
 
 import {
   ShieldCheck,

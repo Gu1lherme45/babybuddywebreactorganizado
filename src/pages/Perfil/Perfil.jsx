@@ -1,13 +1,33 @@
 import styles from './Perfil.module.css';
 
+import art3 from '../../assets/art3.svg';
+
 import {
   FiClock,
-  FiChevronRight,
   FiChevronDown,
-  FiArrowRight,
 } from 'react-icons/fi';
 
 export default function Perfil() {
+
+  // PEGA DADOS DO USUÁRIO
+  const usuario = JSON.parse(
+    localStorage.getItem('usuario')
+  );
+
+  // NOME DO USUÁRIO
+  const nomeUsuario = usuario?.nome || 'Usuária';
+
+  // ARTIGO DESTAQUE
+  const destaque = {
+    category: 'DESENVOLVIMENTO',
+    title: 'Período Gestacional',
+    time: '5 min de leitura',
+    description:
+      'Tudo que você precisa saber sobre o período  gestacional! Guia Completo com Tudo sobre Gravidez, Trimestres e Cuidados',
+    image: art3,
+  };
+
+  // CARDS GESTAÇÃO
   const gestacaoCards = [
     {
       category: 'DESENVOLVIMENTO',
@@ -39,6 +59,7 @@ export default function Perfil() {
     },
   ];
 
+  // CARDS MAIS LIDOS
   const maisLidosCards = [
     {
       category: 'SAÚDE',
@@ -70,6 +91,7 @@ export default function Perfil() {
     },
   ];
 
+  // RENDERIZA CARDS
   const renderCards = (cards) => {
     return cards.map((card, index) => (
       <article className={styles.card} key={index}>
@@ -98,83 +120,124 @@ export default function Perfil() {
 
   return (
     <main className={styles.container}>
+
       {/* TOPO */}
       <header className={styles.topBar}>
+
+        <div className={styles.logoArea}>
+          <h1>
+            Olá, <span>{nomeUsuario}!</span> 👋
+          </h1>
+
+          <p>
+            Conteúdos feitos com amor para apoiar você
+            em cada fase da gestação.
+          </p>
+        </div>
+
         <div className={styles.user}>
           <img
             src="https://randomuser.me/api/portraits/women/44.jpg"
             alt="Foto da usuária"
           />
 
-          <div className={styles.userInfo}>
-            <span>Olá, Juliana!</span>
-
-            <FiChevronDown />
-          </div>
+          <FiChevronDown />
         </div>
+
       </header>
 
-      {/* HERO */}
-      <section className={styles.hero}>
-        <div className={styles.heroText}>
-          <h1>
-            Olá, <span>Juliana!</span> 💕
-          </h1>
+      {/* CATEGORIAS */}
+      <section className={styles.categories}>
 
-          <p>
-            Que bom ter você aqui! Continue cuidando de
-            cada detalhe da sua gestação com amor,
-            carinho e informação de qualidade.
-          </p>
-        </div>
+        <button className={styles.active}>
+          Todos
+        </button>
 
-        <div className={styles.heroBanner}></div>
+        <button>Nutrição</button>
+
+        <button>Bebê</button>
+
+        <button>Desenvolvimento</button>
+
+        <button>Bem-estar</button>
+
+        <button>Exercícios</button>
+
       </section>
 
-      {/* CONTEÚDO */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Para esta fase da gestação</h2>
+      {/* ARTIGO DESTAQUE */}
+      <section className={styles.featured}>
 
-          <button type="button">
-            Ver todos
-            <FiChevronRight />
-          </button>
+        <div className={styles.featuredImage}>
+          <img
+            src={destaque.image}
+            alt={destaque.title}
+          />
+        </div>
+
+        <div className={styles.featuredContent}>
+
+          <span>
+            {destaque.category}
+          </span>
+
+          <h2>
+            {destaque.title}
+          </h2>
+
+          <p>
+            {destaque.description}
+          </p>
+
+          <div className={styles.featuredFooter}>
+
+            <div className={styles.time}>
+              <FiClock />
+
+              <p>{destaque.time}</p>
+            </div>
+
+            <button type="button">
+              Ler agora
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* SEÇÃO 1 */}
+      <section className={styles.section}>
+
+        <div className={styles.sectionHeader}>
+          <h2>
+            Para esta fase da gestação
+          </h2>
         </div>
 
         <div className={styles.cards}>
           {renderCards(gestacaoCards)}
-
-          <button
-            type="button"
-            className={styles.arrowButton}
-          >
-            <FiArrowRight />
-          </button>
         </div>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Mais lidos pelas mamães</h2>
 
-          <button type="button">
-            Ver todos
-            <FiChevronRight />
-          </button>
+
+      {/* SEÇÃO 2 */}
+      <section className={styles.section}>
+
+        <div className={styles.sectionHeader}>
+          <h2>
+            Mais lidos pelas mamães
+          </h2>
         </div>
 
         <div className={styles.cards}>
           {renderCards(maisLidosCards)}
-
-          <button
-            type="button"
-            className={styles.arrowButton}
-          >
-            <FiArrowRight />
-          </button>
         </div>
+
       </section>
+
     </main>
   );
 }

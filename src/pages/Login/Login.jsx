@@ -1,15 +1,16 @@
+
 import React, { useState } from 'react';
 import styles from './Login.module.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
+  FiUser,
   FiMail,
   FiLock,
   FiEye,
   FiEyeOff,
 } from 'react-icons/fi';
-
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
+    nome: '',
     email: '',
     senha: '',
   });
@@ -31,8 +33,21 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // DADOS DO USUÁRIO
+    const usuario = {
+      nome: formData.nome,
+      email: formData.email,
+      senha: formData.senha,
+    };
+
+    // SALVA NO LOCALSTORAGE
+    localStorage.setItem(
+      'usuario',
+      JSON.stringify(usuario)
+    );
+
     // LOGIN
-    console.log(formData);
+    console.log(usuario);
 
     // REDIRECIONA PARA PERFIL
     navigate('/perfil');
@@ -42,17 +57,34 @@ const Login = () => {
     <div className={styles.container}>
       <div className={styles.card}>
 
-       
         <h1 className={styles.title}>Login</h1>
 
         <p className={styles.subtitle}>
-          Digite seu e-mail e senha para acessar sua conta
+          Digite seus dados para acessar sua conta
         </p>
 
         <form
           onSubmit={handleSubmit}
           className={styles.form}
         >
+
+          {/* NOME */}
+          <div className={styles.inputGroup}>
+            <label>Nome</label>
+
+            <div className={styles.inputWrapper}>
+              <FiUser className={styles.icon} />
+
+              <input
+                type="text"
+                name="nome"
+                placeholder="Digite seu nome"
+                value={formData.nome}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
 
           {/* EMAIL */}
           <div className={styles.inputGroup}>
@@ -103,8 +135,6 @@ const Login = () => {
               </button>
             </div>
           </div>
-
-         
 
           <button
             type="submit"

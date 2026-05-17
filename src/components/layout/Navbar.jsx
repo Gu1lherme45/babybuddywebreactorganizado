@@ -1,3 +1,4 @@
+
 import styles from './Navbar.module.css';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -8,9 +9,10 @@ export default function Navbar() {
   const isQuestionario = location.pathname === "/questionario";
   const isCadastro = location.pathname === "/cadastro";
   const isLogin = location.pathname === "/login";
+  const isPerfil = location.pathname === "/perfil";
 
   // esconde navbar nessas páginas
-  if (isQuestionario || isCadastro || isLogin) return null;
+  if (isQuestionario || isCadastro || isLogin || isPerfil) return null;
 
   return (
     <nav className={styles.navbar}>
@@ -27,7 +29,7 @@ export default function Navbar() {
             Login
           </Link>
 
-          <Link to="/cadastro" className={styles.cadastro}>
+          <Link to="/cadastro" className={styles.cadastro}> 
             Cadastre-se
           </Link>
         </div>
