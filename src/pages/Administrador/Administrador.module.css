@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "League Spartan", sans-serif;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 270px;
+  background: white;
+  padding: 35px 25px;
+  border-right: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logoIcon {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+}
+
+.logoArea h2 {
+  font-size: 1.4rem;
+  color: #111827;
+}
+
+.logoArea span {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+.nav button {
+  border: none;
+  background: transparent;
+  padding: 15px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #4b5563;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.nav button:hover {
+  background: #f3f4f6;
+}
+
+.active {
+  background: #7c3aed !important;
+  color: white !important;
+}
+
+/* CONTEUDO */
+
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+/* TOPBAR */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.topbar h1 {
+  font-size: 2.5rem;
+  color: #111827;
+}
+
+.topbar p {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 14px 18px;
+  border-radius: 14px;
+  width: 300px;
+  border: 1px solid #ececec;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+}
+
+.notification {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  border: 1px solid #ececec;
+}
+
+.profile {
+  width: 55px;
+  height: 55px;
+  background: #7c3aed;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* STATS */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-bottom: 45px;
+}
+
+.statCard {
+  background: white;
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.statCard h3 {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.statCard strong {
+  font-size: 2.2rem;
+  color: #111827;
+}
+
+/* SECTION */
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.sectionHeader h2 {
+  font-size: 2rem;
+  color: #111827;
+}
+
+.sectionHeader p {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+.addButton {
+  border: none;
+  background: #7c3aed;
+  color: white;
+  padding: 15px 22px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.addButton:hover {
+  background: #6928d9;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: white;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 24px;
+}
+
+.cardContent span {
+  color: #7c3aed;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.cardContent h3 {
+  margin: 14px 0;
+  color: #111827;
+  font-size: 1.5rem;
+}
+
+.cardContent p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.statusArea {
+  margin-top: 20px;
+}
+
+.status {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.activeStatus {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.suspendedStatus {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.actions {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.actions button {
+  border: none;
+  padding: 13px 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.editBtn {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.editBtn:hover {
+  background: #ddd6fe;
+}
+
+.suspendBtn {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.suspendBtn:hover {
+  background: #fde68a;
+}
+
+.deleteBtn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.deleteBtn:hover {
+  background: #fecaca;
+}
+
+.suspended {
+  opacity: 0.7;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1100px) {
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .topActions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .topbar h1 {
+    font-size: 2rem;
+  }
+}

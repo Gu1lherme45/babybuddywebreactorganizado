@@ -8,6 +8,8 @@ import Sobre from '../pages/Sobre/Sobre';
 import Cadastro from '../pages/Cadastro/Cadastro';
 import Login from '../pages/Login/Login';
 import Perfil from '../pages/Perfil/Perfil';
+import Administrador from '../pages/Administrador/Administrador';
+
 
 import PeriodoGestacional from '../pages/PeriodoGestacional/PeriodoGestacional';
 import CuidadosBebe from '../pages/CuidadosBebe/CuidadosBebe';
@@ -25,7 +27,7 @@ export default function AppRoutes() {
 
       <Routes>
         <Route element={<Layout />}>
-
+          
           {/* PRINCIPAIS */}
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
@@ -34,6 +36,14 @@ export default function AppRoutes() {
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/perfil" element={<Perfil />} />
+
+          {/* ROTA ADMINISTRADOR */}
+          <Route
+            path="/administrador"
+            element={<Administrador />}
+          />
+
+         
 
           {/* ARTIGOS */}
           <Route

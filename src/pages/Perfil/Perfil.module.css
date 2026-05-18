@@ -1,465 +1,233 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap');
 
-.container {
-  width: 100%;
-  min-height: 100vh;
-
-  background: linear-gradient(
-    to bottom,
-    #fffafb,
-    #ffffff
-  );
-
-  font-family: 'League Spartan', sans-serif;
-
-  padding: 35px 22px 60px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  margin-top: 60px;
 }
 
-/* =========================
-   ÁREA GERAL
-========================= */
-
-.topBar,
-.categories,
-.featured,
-.section {
-  width: 100%;
-  max-width: 1080px;
+.container {
+  min-height: 100vh;
+  background: #f7f7f7;
+  padding: 90px 70px 60px;
+  font-family: 'League Spartan', sans-serif;
 }
 
-/* =========================
-   TOPO
-========================= */
+/* HEADER */
 
-.topBar {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
-  margin-bottom: 34px;
+  margin-bottom: 45px;
 }
 
-.logoArea h1 {
-  font-size: 40px;
+.title {
+  font-size: 3rem;
+  color: #14213d;
   font-weight: 800;
-
-  color: #1f2937;
-
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.logoArea h1 span {
-  color: #ff4f87;
+.title span {
+  color: #DA1D6B;
 }
 
-.logoArea p {
-  font-size: 15px;
+.subtitle {
+  color: #667085;
+  max-width: 520px;
+  font-size: 1.05rem;
   line-height: 1.6;
+}
 
-  color: #6b7280;
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #DA1D6B;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
+/* DESTAQUE */
+
+.highlight {
+  background: white;
+  border-radius: 28px;
+  padding: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 70px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.highlightText {
   max-width: 520px;
 }
 
-/* =========================
-   PERFIL
-========================= */
-
-.user {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  cursor: pointer;
-}
-
-.user img {
-  width: 48px;
-  height: 48px;
-
-  border-radius: 50%;
-  object-fit: cover;
-
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-}
-
-.user svg {
-  font-size: 16px;
-  color: #4b5563;
-}
-
-/* =========================
-   CATEGORIAS
-========================= */
-
-.categories {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  overflow-x: auto;
-
-  margin-bottom: 34px;
-
-  padding-bottom: 6px;
-}
-
-.categories::-webkit-scrollbar {
-  display: none;
-}
-
-.categories button {
-  border: none;
-
-  background: transparent;
-
-  color: #374151;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  padding: 10px 18px;
-
-  border-radius: 999px;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
-}
-
-.categories button:hover {
-  background: #ffe4ed;
-}
-
-.active {
-  background: #ff4f87 !important;
-  color: #ffffff !important;
-
+.badge {
+  display: inline-block;
+  background: rgba(218, 29, 107, 0.1);
+  color: #DA1D6B;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.8rem;
   font-weight: 700;
-}
-
-/* =========================
-   ARTIGO DESTAQUE
-========================= */
-
-.featured {
-  width: 100%;
-
-  max-width: 936px; /* mesmo alinhamento visual dos cards */
-
-  background: #ffffff;
-
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-
-  margin-bottom: 55px;
-  margin-left: 250px;
-  margin-right: auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-}
-
-.featuredImage img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.featuredContent {
-  padding: 38px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.featuredContent span {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-
-  color: #ff4f87;
-
-  margin-bottom: 14px;
-}
-
-.featuredContent h2 {
-  font-size: 32px;
-  line-height: 1.15;
-  font-weight: 800;
-
-  color: #111827;
-
   margin-bottom: 18px;
 }
 
-.featuredContent p {
-  font-size: 15px;
-  line-height: 1.7;
-
-  color: #6b7280;
-
-  margin-bottom: 24px;
+.highlight h2 {
+  font-size: 2rem;
+  color: #14213d;
+  margin-bottom: 16px;
+  line-height: 1.2;
 }
 
-.featuredFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.highlight p {
+  color: #667085;
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
 
-.featuredFooter button {
-  border: none;
-
-  background: #ff4f87;
-
-  color: #ffffff;
-
-  padding: 12px 22px;
-
-  border-radius: 999px;
-
-  font-size: 14px;
+.button {
+  background: #DA1D6B;
+  color: white;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 12px;
   font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
-.featuredFooter button:hover {
-  background: #ff3d79;
-
-  transform: translateY(-2px);
+.button:hover {
+  opacity: 0.92;
 }
 
-/* =========================
-   SEÇÕES
-========================= */
-
-.section {
-  margin-bottom: 55px;
+.icon {
+  color: #DA1D6B;
+  opacity: 0.15;
 }
 
-.sectionHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* ARTIGOS */
 
-  margin-bottom: 20px;
-}
-
-.sectionHeader h2 {
-  font-size: 28px;
-  font-weight: 800;
-
-  color: #111827;
-}
-
-.sectionHeader button {
-  border: none;
-
-  background: transparent;
-
-  color: #ff4f87;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 18px;
-}
-
-.card {
-  width: 220px;
-
-  background: #ffffff;
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.cardImage {
+.artigosContainer {
+  max-width: 1200px;
   width: 100%;
-  height: 145px;
+  margin: 0 auto;
+  text-align: center;
 
+  position: relative;
+  z-index: 2;
+}
+
+.artigosTitle {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  text-align: center;
+  color: #DA1D6B;
+}
+
+.artigosGrid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.artigoCard {
+  width: 260px;
+  text-align: left;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.artigoCard:hover {
+  transform: translateY(-6px);
+}
+
+.artigoCard img {
+  width: 100%;
+  height: 180px;
   object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 .cardContent {
-  padding: 18px;
+  padding: 0 4px;
 }
 
-.category {
-  font-size: 9px;
-  font-weight: 700;
+.cardContent span {
+  font-size: 0.75rem;
+  color: #d81b60;
+  font-weight: 800;
   letter-spacing: 1px;
-
-  color: #ff4f87;
 }
 
-.cardContent h3 {
-  font-size: 18px;
-  line-height: 1.4;
+.artigoCard h3 {
+  font-size: 0.95rem;
+  color: #d81b60;
   font-weight: 700;
-
-  color: #111827;
-
-  margin: 12px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
-.time {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  color: #6b7280;
-
-  font-size: 12px;
+.artigoCard p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
 }
 
-.time p {
-  margin: 0;
-}
+/* RESPONSIVO */
 
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media (max-width: 1024px) {
-  .featured {
-    grid-template-columns: 1fr;
-  }
-
-  .featuredImage img {
-    height: 320px;
-  }
-
-  .featuredContent h2 {
-    font-size: 28px;
-  }
-
-  .cards {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container {
-    padding: 28px 18px 50px;
+    padding: 70px 24px 40px;
   }
 
-  .topBar {
+  .header {
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
 
-  .logoArea h1 {
-    font-size: 32px;
+  .title {
+    font-size: 2.3rem;
   }
 
-  .logoArea p {
-    font-size: 14px;
+  .highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px;
   }
 
-  .featuredContent {
-    padding: 28px;
+  .highlight h2 {
+    font-size: 1.7rem;
+  } 
+
+  .icon {
+    display: none;
   }
 
-  .featuredContent h2 {
-    font-size: 24px;
+  .artigosTitle {
+    font-size: 2rem;
+    margin-bottom: 40px;
   }
 
-  .featuredContent p {
-    font-size: 14px;
+  .artigosGrid {
+    gap: 28px;
   }
 
-  .sectionHeader h2 {
-    font-size: 24px;
-  }
-
-  .card {
+  .artigoCard {
     width: 100%;
-    max-width: 260px;
-  }
-
-  .cardContent h3 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 500px) {
-  .container {
-    padding: 24px 16px 45px;
-  }
-
-  .logoArea h1 {
-    font-size: 28px;
-  }
-
-  .featuredImage img {
-    height: 240px;
-  }
-
-  .featuredContent {
-    padding: 22px;
-  }
-
-  .featuredContent h2 {
-    font-size: 22px;
-  }
-
-  .featuredFooter {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .sectionHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .sectionHeader h2 {
-    font-size: 22px;
-  }
-
-  .categories button {
-    font-size: 13px;
-
-    padding: 9px 16px;
+    max-width: 320px;
   }
 }

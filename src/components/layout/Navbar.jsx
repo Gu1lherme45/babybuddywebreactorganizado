@@ -5,14 +5,22 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Navbar() {
   const location = useLocation();
 
-  // detecta páginas
-  const isQuestionario = location.pathname === "/questionario";
-  const isCadastro = location.pathname === "/cadastro";
-  const isLogin = location.pathname === "/login";
-  const isPerfil = location.pathname === "/perfil";
+// detecta páginas
+const isQuestionario = location.pathname === "/questionario";
+const isCadastro = location.pathname === "/cadastro";
+const isLogin = location.pathname === "/login";
+const isPerfil = location.pathname === "/perfil";
+const isAdministrador = location.pathname === "/administrador";
 
-  // esconde navbar nessas páginas
-  if (isQuestionario || isCadastro || isLogin || isPerfil) return null;
+// esconde navbar nessas páginas
+if (
+  isQuestionario ||
+  isCadastro ||
+  isLogin ||
+  isPerfil ||
+  isAdministrador
+)
+  return null;
 
   return (
     <nav className={styles.navbar}>

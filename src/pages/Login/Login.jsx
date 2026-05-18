@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import styles from './Login.module.css';
 
@@ -33,11 +32,21 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // EMAIL DIGITADO
+    const email = formData.email.toLowerCase();
+
+    // VERIFICA SE É ADMIN
+    const adminRegex =
+      /^admin0[1-6]@babybuddy\.com\.br$/;
+
+    const isAdmin = adminRegex.test(email);
+
     // DADOS DO USUÁRIO
     const usuario = {
       nome: formData.nome,
       email: formData.email,
       senha: formData.senha,
+      tipo: isAdmin ? 'admin' : 'usuario',
     };
 
     // SALVA NO LOCALSTORAGE
@@ -46,11 +55,14 @@ const Login = () => {
       JSON.stringify(usuario)
     );
 
-    // LOGIN
     console.log(usuario);
 
-    // REDIRECIONA PARA PERFIL
-    navigate('/perfil');
+    // REDIRECIONAMENTO
+    if (isAdmin) {
+      navigate('/administrador');
+    } else {
+      navigate('/perfil');
+    }
   };
 
   return (
