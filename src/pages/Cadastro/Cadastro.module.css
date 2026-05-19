@@ -22,15 +22,7 @@
 }
 
 .container::before {
-  content: '';
-  position: absolute;
-  bottom: -180px;
-  left: -120px;
-  width: 480px;
-  height: 280px;
-  background: #fff1f6;
-  border-radius: 50%;
-  z-index: 0;
+  display: none;
 }
 
 /* LEFT */
