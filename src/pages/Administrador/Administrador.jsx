@@ -10,7 +10,7 @@ import {
   Pencil,
   Trash2,
   Ban,
-  CheckCircle2,
+ CheckCircle2,
   Plus,
   Bell,
   Settings,
@@ -84,7 +84,8 @@ export default function AdminDashboard() {
     return artigosSalvos;
   });
 
-  const [pesquisa, setPesquisa] = useState("");
+  const [pesquisa, setPesquisa] =
+    useState("");
 
   // SALVA E SINCRONIZA
   useEffect(() => {
@@ -100,34 +101,62 @@ export default function AdminDashboard() {
 
   // EDITAR
   function editarArtigo(id) {
-    const artigo = artigos.find(
-      (a) => a.id === id
-    );
+    const artigoSelecionado =
+      artigos.find(
+        (artigo) => artigo.id === id
+      );
+
+    if (!artigoSelecionado) return;
 
     const novoTitulo = prompt(
-      "Novo título:",
-      artigo.titulo
+      "Editar título do artigo:",
+      artigoSelecionado.titulo
     );
 
     if (novoTitulo === null) return;
 
     const novaDescricao = prompt(
-      "Nova descrição:",
-      artigo.descricao
+      "Editar descrição do artigo:",
+      artigoSelecionado.descricao
     );
 
     if (novaDescricao === null) return;
 
-    setArtigos((prev) =>
-      prev.map((artigo) =>
-        artigo.id === id
-          ? {
-              ...artigo,
-              titulo: novoTitulo,
-              descricao: novaDescricao,
-            }
-          : artigo
+    const novaCategoria = prompt(
+      "Editar categoria:",
+      artigoSelecionado.categoria
+    );
+
+    if (novaCategoria === null) return;
+
+    const artigosAtualizados =
+      artigos.map((artigo) => {
+        if (artigo.id === id) {
+          return {
+            ...artigo,
+            titulo: novoTitulo,
+            descricao: novaDescricao,
+            categoria: novaCategoria,
+          };
+        }
+
+        return artigo;
+      });
+
+    // atualiza state
+    setArtigos(artigosAtualizados);
+
+    // salva no localStorage
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
       )
+    );
+
+    // atualiza page perfil
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
     );
   }
 
@@ -140,15 +169,27 @@ export default function AdminDashboard() {
     const imageUrl =
       URL.createObjectURL(file);
 
-    setArtigos((prev) =>
-      prev.map((artigo) =>
+    const artigosAtualizados =
+      artigos.map((artigo) =>
         artigo.id === id
           ? {
               ...artigo,
               imagem: imageUrl,
             }
           : artigo
+      );
+
+    setArtigos(artigosAtualizados);
+
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
       )
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
     );
   }
 
@@ -160,27 +201,52 @@ export default function AdminDashboard() {
 
     if (!confirmar) return;
 
-    setArtigos((prev) =>
-      prev.filter(
+    const artigosAtualizados =
+      artigos.filter(
         (artigo) => artigo.id !== id
+      );
+
+    setArtigos(artigosAtualizados);
+
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
       )
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
     );
   }
 
   // SUSPENDER
   function suspenderArtigo(id) {
-    setArtigos((prev) =>
-      prev.map((artigo) =>
+    const artigosAtualizados =
+      artigos.map((artigo) =>
         artigo.id === id
           ? {
               ...artigo,
               status:
-                artigo.status === "ativo"
+                artigo.status ===
+                "ativo"
                   ? "suspenso"
                   : "ativo",
             }
           : artigo
+      );
+
+    setArtigos(artigosAtualizados);
+
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
       )
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
     );
   }
 
@@ -197,21 +263,34 @@ export default function AdminDashboard() {
       rota: "/",
     };
 
-    setArtigos((prev) => [
+    const artigosAtualizados = [
       novoArtigo,
-      ...prev,
-    ]);
+      ...artigos,
+    ];
+
+    setArtigos(artigosAtualizados);
+
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
+      )
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
+    );
   }
 
   // PESQUISA
-  const artigosFiltrados = artigos.filter(
-    (artigo) =>
+  const artigosFiltrados =
+    artigos.filter((artigo) =>
       artigo.titulo
         .toLowerCase()
         .includes(
           pesquisa.toLowerCase()
         )
-  );
+    );
 
   return (
     <div className={styles.container}>
@@ -223,8 +302,10 @@ export default function AdminDashboard() {
           </div>
 
           <div>
-            <h2>MaternaCare</h2>
-            <span>Painel Admin</span>
+            <h2>Babybuddy</h2>
+            <span>
+              Painel Administrador
+            </span>
           </div>
         </div>
 
@@ -266,13 +347,16 @@ export default function AdminDashboard() {
             </h1>
 
             <p>
-              Gerencie artigos, usuários e
-              conteúdos da plataforma.
+              Gerencie artigos,
+              usuários e conteúdos da
+              plataforma.
             </p>
           </div>
 
           <div className={styles.topActions}>
-            <div className={styles.searchBox}>
+            <div
+              className={styles.searchBox}
+            >
               <Search size={18} />
 
               <input
@@ -307,6 +391,7 @@ export default function AdminDashboard() {
         <section className={styles.stats}>
           <div className={styles.statCard}>
             <h3>Total de Artigos</h3>
+
             <strong>
               {artigos.length}
             </strong>
@@ -319,7 +404,8 @@ export default function AdminDashboard() {
               {
                 artigos.filter(
                   (a) =>
-                    a.status === "ativo"
+                    a.status ===
+                    "ativo"
                 ).length
               }
             </strong>
@@ -449,7 +535,7 @@ export default function AdminDashboard() {
                       styles.editBtn
                     }
                   >
-                    Alterar imagem
+                    Alterar Imagem
 
                     <input
                       type="file"
@@ -482,9 +568,7 @@ export default function AdminDashboard() {
                       </>
                     ) : (
                       <>
-                        <CheckCircle2
-                          size={18}
-                        />
+                        <CheckCircle2 size={18} />
                         Ativar
                       </>
                     )}
