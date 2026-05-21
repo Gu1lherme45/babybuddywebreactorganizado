@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -28,49 +27,91 @@ export default function Cadastro() {
       const element = document.getElementById(id);
 
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({
+          behavior: 'smooth'
+        });
       }
     }
   }, [location]);
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [loading, setLoading] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
+
+  const [success, setSuccess] =
+    useState("");
 
   // 👁 MOSTRAR / ESCONDER SENHAS
-  const [showSenha, setShowSenha] = useState(false);
-  const [showConfirmarSenha, setShowConfirmarSenha] = useState(false);
+  const [showSenha, setShowSenha] =
+    useState(false);
+
+  const [
+    showConfirmarSenha,
+    setShowConfirmarSenha
+  ] = useState(false);
 
   // 🔥 LOGIN COM GOOGLE
   const loginGoogle = useGoogleLogin({
+
     onSuccess: async (tokenResponse) => {
+
       try {
 
         const userInfo = await fetch(
           "https://www.googleapis.com/oauth2/v3/userinfo",
           {
             headers: {
-              Authorization: `Bearer ${tokenResponse.access_token}`,
+              Authorization:
+                `Bearer ${tokenResponse.access_token}`,
             },
           }
         );
 
         const user = await userInfo.json();
 
-        console.log("Usuário Google:", user);
+        console.log(
+          "Usuário Google:",
+          user
+        );
 
-        setSuccess("Login com Google realizado!");
+        // SALVA USUÁRIO GOOGLE
+        const usuarioGoogle = {
+          nome: user.name,
+          email: user.email,
+          senha: '',
+          telefone: '',
+          nivelAcesso: 'USUARIO',
+        };
 
-        // ✅ REDIRECIONA PARA QUESTIONÁRIO
+        localStorage.setItem(
+          'usuario',
+          JSON.stringify(usuarioGoogle)
+        );
+
+        setSuccess(
+          "Login com Google realizado!"
+        );
+
+        // REDIRECIONA
         navigate('/questionario');
 
       } catch (err) {
-        setError("Erro no login com Google.");
+
+        setError(
+          "Erro no login com Google."
+        );
+
       }
     },
 
     onError: () => {
-      setError("Erro ao autenticar com Google.");
+
+      setError(
+        "Erro ao autenticar com Google."
+      );
+
     }
   });
 
@@ -82,56 +123,126 @@ export default function Cadastro() {
     setError("");
     setSuccess("");
 
-    const senha = document.getElementById('senha').value;
-    const confirmarSenha = document.getElementById('confirmarSenha').value;
+    const nome =
+      document.getElementById('nome').value;
+
+    const email =
+      document.getElementById('email').value;
+
+    const telefone =
+      document.getElementById('telefone').value;
+
+    const senha =
+      document.getElementById('senha').value;
+
+    const confirmarSenha =
+      document.getElementById(
+        'confirmarSenha'
+      ).value;
 
     // ✅ VALIDAÇÃO DAS SENHAS
     if (senha !== confirmarSenha) {
-      setError("As senhas não coincidem.");
+
+      setError(
+        "As senhas não coincidem."
+      );
+
       setLoading(false);
       return;
     }
 
-    const data = {
-      nome: document.getElementById('nome').value,
-      email: document.getElementById('email').value,
-      senha: senha,
-      nivelAcesso: 'USUARIO',
-    };
+    // PEGA USUÁRIOS JÁ CADASTRADOS
+    const usuarios =
+      JSON.parse(
+        localStorage.getItem('usuarios')
+      ) || [];
 
-    try {
+    // VERIFICA SE EMAIL JÁ EXISTE
+    const usuarioExiste = usuarios.find(
+      (user) =>
+        user.email.toLowerCase() ===
+        email.toLowerCase()
+    );
 
-      const response = await fetch(
-        'http://localhost:8080/api/usuarios',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (!response.ok) {
-
-        const msg = await response.text();
-
-        throw new Error(
-          msg || 'Erro ao cadastrar usuário.'
-        );
-      }
-
-      setSuccess('Cadastro realizado com sucesso!');
-
-      // ✅ REDIRECIONA PARA QUESTIONÁRIO
-      setTimeout(() => {
-        navigate('/questionario');
-      }, 1000);
-
-    } catch (err) {
+    if (usuarioExiste) {
 
       setError(
-        err.message || 'Erro ao cadastrar usuário.'
+        'Este e-mail já está cadastrado.'
+      );
+
+      setLoading(false);
+      return;
+    }
+
+    // NOVO USUÁRIO
+const novoUsuario = {
+  nome,
+  email,
+  telefone,
+  senha,
+  nivelAcesso: 'USUARIO',
+};
+
+try {
+
+  // =========================
+  // CRUD ORIGINAL
+  // =========================
+
+  const response = await fetch(
+    'http://localhost:8080/api/usuarios',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(novoUsuario),
+    }
+  );
+
+  if (!response.ok) {
+
+    const msg = await response.text();
+
+    throw new Error(
+      msg || 'Erro ao cadastrar usuário.'
+    );
+  }
+
+  // =========================
+  // LOCAL STORAGE
+  // =========================
+
+  usuarios.push(novoUsuario);
+
+  localStorage.setItem(
+    'usuarios',
+    JSON.stringify(usuarios)
+  );
+
+  localStorage.setItem(
+    'usuario',
+    JSON.stringify(novoUsuario)
+  );
+
+  console.log(
+    'Usuário cadastrado:',
+    novoUsuario
+  );
+
+  setSuccess(
+    'Cadastro realizado com sucesso!'
+  );
+
+  // REDIRECIONA
+  setTimeout(() => {
+    navigate('/questionario');
+  }, 1000);
+
+} catch (err) {
+
+      setError(
+        'Erro ao cadastrar usuário.'
       );
 
     } finally {
@@ -144,58 +255,86 @@ export default function Cadastro() {
   return (
 
     <div className={styles.container}>
+
       <div className={styles.left}>
+
         <div className={styles.leftContent}>
+
           <h1>
             Acompanhe cada
-            <span> momento da sua gestação</span>
+            <span>
+              {' '}momento da sua gestação
+            </span>
           </h1>
 
           <p className={styles.description}>
-            Crie sua conta e tenha um acompanhamento
-            completo, organizado e seguro.
+            Crie sua conta e tenha um
+            acompanhamento completo,
+            organizado e seguro.
           </p>
 
           <div className={styles.features}>
+
             <div className={styles.featureItem}>
+
               <div className={styles.iconBox}>
                 <FiClipboard />
               </div>
 
               <div>
-                <h3>Monitoramento contínuo</h3>
+                <h3>
+                  Monitoramento contínuo
+                </h3>
+
                 <p>
-                  Acompanhe o crescimento do bebê, exames e marcos da sua gestação.
+                  Acompanhe o crescimento
+                  do bebê, exames e marcos
+                  da sua gestação.
                 </p>
               </div>
 
             </div>
 
             <div className={styles.featureItem}>
+
               <div className={styles.iconBox}>
                 <FiBell />
               </div>
 
               <div>
-                <h3>Lembretes personalizados</h3>
+
+                <h3>
+                  Lembretes personalizados
+                </h3>
+
                 <p>
-                  Receba alertas de consultas, e cuidados importantes.
+                  Receba alertas de
+                  consultas e cuidados
+                  importantes.
                 </p>
+
               </div>
 
             </div>
 
             <div className={styles.featureItem}>
+
               <div className={styles.iconBox}>
                 <FiHeart />
               </div>
 
               <div>
-                <h3>Tudo em um só lugar</h3>
+
+                <h3>
+                  Tudo em um só lugar
+                </h3>
 
                 <p>
-                  Cuidado gestacional completo em uma única plataforma.
+                  Cuidado gestacional
+                  completo em uma única
+                  plataforma.
                 </p>
+
               </div>
 
             </div>
@@ -218,29 +357,37 @@ export default function Cadastro() {
           </h2>
 
           <p className={styles.subtitle}>
-            Preencha os campos abaixo para se cadastrar
+            Preencha os campos abaixo
+            para se cadastrar
           </p>
 
-          {success && (
-            <div className={styles.success}>
-              {success}
-            </div>
-          )}
+          {
+            success && (
+              <div className={styles.success}>
+                {success}
+              </div>
+            )
+          }
 
-          {error && (
-            <div className={styles.error}>
-              {error}
-            </div>
-          )}
+          {
+            error && (
+              <div className={styles.error}>
+                {error}
+              </div>
+            )
+          }
 
           <form
             onSubmit={handleSubmit}
             className={styles.form}
           >
 
+            {/* NOME */}
             <div className={styles.inputGroup}>
 
-              <label>Nome completo</label>
+              <label>
+                Nome completo
+              </label>
 
               <div className={styles.inputBox}>
 
@@ -257,9 +404,12 @@ export default function Cadastro() {
 
             </div>
 
+            {/* EMAIL */}
             <div className={styles.inputGroup}>
 
-              <label>E-mail</label>
+              <label>
+                E-mail
+              </label>
 
               <div className={styles.inputBox}>
 
@@ -276,9 +426,12 @@ export default function Cadastro() {
 
             </div>
 
+            {/* TELEFONE */}
             <div className={styles.inputGroup}>
 
-              <label>Telefone</label>
+              <label>
+                Telefone
+              </label>
 
               <div className={styles.inputBox}>
 
@@ -294,16 +447,23 @@ export default function Cadastro() {
 
             </div>
 
+            {/* SENHA */}
             <div className={styles.inputGroup}>
 
-              <label>Senha</label>
+              <label>
+                Senha
+              </label>
 
               <div className={styles.inputBox}>
 
                 <FiLock />
 
                 <input
-                  type={showSenha ? "text" : "password"}
+                  type={
+                    showSenha
+                      ? "text"
+                      : "password"
+                  }
                   id="senha"
                   placeholder="Mínimo de 8 caracteres"
                   required
@@ -314,14 +474,18 @@ export default function Cadastro() {
 
                     <FiEyeOff
                       className={styles.eye}
-                      onClick={() => setShowSenha(false)}
+                      onClick={() =>
+                        setShowSenha(false)
+                      }
                     />
 
                   ) : (
 
                     <FiEye
                       className={styles.eye}
-                      onClick={() => setShowSenha(true)}
+                      onClick={() =>
+                        setShowSenha(true)
+                      }
                     />
 
                   )
@@ -331,9 +495,12 @@ export default function Cadastro() {
 
             </div>
 
+            {/* CONFIRMAR SENHA */}
             <div className={styles.inputGroup}>
 
-              <label>Confirmar senha</label>
+              <label>
+                Confirmar senha
+              </label>
 
               <div className={styles.inputBox}>
 
@@ -376,6 +543,7 @@ export default function Cadastro() {
 
             </div>
 
+            {/* TERMOS */}
             <div className={styles.terms}>
 
               <input
@@ -384,6 +552,7 @@ export default function Cadastro() {
               />
 
               <p>
+
                 Eu concordo com os
 
                 <Link
@@ -406,16 +575,19 @@ export default function Cadastro() {
 
             </div>
 
+            {/* BOTÃO */}
             <button
               type="submit"
               disabled={loading}
               className={styles.btn}
             >
+
               {
                 loading
                   ? "Cadastrando..."
                   : "Criar minha conta"
               }
+
             </button>
 
           </form>
@@ -428,6 +600,7 @@ export default function Cadastro() {
 
           </div>
 
+          {/* GOOGLE */}
           <button
             className={styles.googleButton}
             onClick={() => loginGoogle()}
@@ -443,9 +616,12 @@ export default function Cadastro() {
           </button>
 
           <p className={styles.loginText}>
+
             Já tem uma conta?
             <span
-              onClick={() => navigate('/login')}
+              onClick={() =>
+                navigate('/login')
+              }
             >
               Entrar
             </span>
@@ -459,4 +635,3 @@ export default function Cadastro() {
     </div>
   );
 }
-

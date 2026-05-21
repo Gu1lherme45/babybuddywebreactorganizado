@@ -1,673 +1,662 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap');
+import styles from "./Administrador.module.css";
+import { useEffect, useState } from "react";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "League Spartan", sans-serif;
-}
+import {
+  LayoutDashboard,
+  FileText,
+  Users,
+  ShieldCheck,
+  Search,
+  Pencil,
+  Trash2,
+  Ban,
+  CheckCircle2,
+  Plus,
+  Settings,
+  CalendarHeart,
+} from "lucide-react";
 
-.container {
-  display: flex;
-  min-height: 100vh;
-  background: #fff;
-}
+// imagens
+import art1 from "../../assets/art1.png";
+import art2 from "../../assets/art2.png";
+import art3 from "../../assets/art3.png";
 
-/* SIDEBAR */
+export default function AdminDashboard() {
+  const admin =
+    localStorage.getItem("nome") ||
+    "Administrador";
 
-.sidebar {
-  width: 250px;
-  background: linear-gradient(
-    180deg,
-    #fff7fa,
-    #fdeef4
+  // ARTIGOS PADRÃO
+  const artigosPadrao = [
+    {
+      id: 1,
+      titulo: "Cuidados com o bebê",
+      categoria: "Bebê",
+      descricao:
+        "Tudo que você precisa saber para cuidar do seu bebê.",
+      imagem: art1,
+      status: "ativo",
+      rota: "/cuidados-bebe",
+    },
+
+    {
+      id: 2,
+      titulo: "Tentando engravidar?",
+      categoria: "Fertilidade",
+      descricao:
+        "Quanto tempo demora a fecundação após a relação sexual?",
+      imagem: art2,
+      status: "ativo",
+      rota: "/tentando-engravidar",
+    },
+
+    {
+      id: 3,
+      titulo: "Período gestacional",
+      categoria: "Gestação",
+      descricao:
+        "Tudo que você precisa saber sobre o período gestacional.",
+      imagem: art3,
+      status: "ativo",
+      rota: "/periodo-gestacional",
+    },
+  ];
+
+  // STORAGE
+  const [artigos, setArtigos] = useState(() => {
+    const artigosSalvos = JSON.parse(
+      localStorage.getItem("artigos")
+    );
+
+    if (
+      !artigosSalvos ||
+      artigosSalvos.length === 0
+    ) {
+      localStorage.setItem(
+        "artigos",
+        JSON.stringify(artigosPadrao)
+      );
+
+      return artigosPadrao;
+    }
+
+    return artigosSalvos;
+  });
+
+  const [pesquisa, setPesquisa] =
+    useState("");
+
+  // MODAL
+  const [modalEditar, setModalEditar] =
+    useState(false);
+
+  const [artigoEditando, setArtigoEditando] =
+    useState(null);
+
+  const [novoTitulo, setNovoTitulo] =
+    useState("");
+
+  const [novaDescricao, setNovaDescricao] =
+    useState("");
+
+  const [novaCategoria, setNovaCategoria] =
+    useState("");
+
+  // SALVA STORAGE
+  useEffect(() => {
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(artigos)
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
+    );
+  }, [artigos]);
+
+  // EDITAR
+  function editarArtigo(id) {
+    const artigo =
+      artigos.find((a) => a.id === id);
+
+    if (!artigo) return;
+
+    setArtigoEditando(artigo);
+
+    setNovoTitulo(artigo.titulo);
+
+    setNovaDescricao(
+      artigo.descricao
+    );
+
+    setNovaCategoria(
+      artigo.categoria
+    );
+
+    setModalEditar(true);
+  }
+
+  // SALVAR EDIÇÃO
+  function salvarEdicao() {
+    const artigosAtualizados =
+      artigos.map((artigo) =>
+        artigo.id ===
+        artigoEditando.id
+          ? {
+              ...artigo,
+              titulo: novoTitulo,
+              descricao:
+                novaDescricao,
+              categoria:
+                novaCategoria,
+            }
+          : artigo
+      );
+
+    setArtigos(artigosAtualizados);
+
+    localStorage.setItem(
+      "artigos",
+      JSON.stringify(
+        artigosAtualizados
+      )
+    );
+
+    window.dispatchEvent(
+      new Event("artigosAtualizados")
+    );
+
+    setModalEditar(false);
+  }
+
+  // ALTERAR IMAGEM
+  function alterarImagem(id, event) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const imageUrl =
+      URL.createObjectURL(file);
+
+    const artigosAtualizados =
+      artigos.map((artigo) =>
+        artigo.id === id
+          ? {
+              ...artigo,
+              imagem: imageUrl,
+            }
+          : artigo
+      );
+
+    setArtigos(artigosAtualizados);
+  }
+
+  // EXCLUIR
+  function excluirArtigo(id) {
+    const confirmar = window.confirm(
+      "Deseja realmente excluir este artigo?"
+    );
+
+    if (!confirmar) return;
+
+    const artigosAtualizados =
+      artigos.filter(
+        (artigo) => artigo.id !== id
+      );
+
+    setArtigos(artigosAtualizados);
+  }
+
+  // SUSPENDER
+  function suspenderArtigo(id) {
+    const artigosAtualizados =
+      artigos.map((artigo) =>
+        artigo.id === id
+          ? {
+              ...artigo,
+              status:
+                artigo.status ===
+                "ativo"
+                  ? "suspenso"
+                  : "ativo",
+            }
+          : artigo
+      );
+
+    setArtigos(artigosAtualizados);
+  }
+
+  // NOVO ARTIGO
+  function adicionarArtigo() {
+    const novoArtigo = {
+      id: Date.now(),
+      titulo: "Novo artigo",
+      categoria: "Categoria",
+      descricao:
+        "Descrição do novo artigo.",
+      imagem: art1,
+      status: "ativo",
+      rota: "/",
+    };
+
+    setArtigos([
+      novoArtigo,
+      ...artigos,
+    ]);
+  }
+
+  // PESQUISA
+  const artigosFiltrados =
+    artigos.filter((artigo) =>
+      artigo.titulo
+        .toLowerCase()
+        .includes(
+          pesquisa.toLowerCase()
+        )
+    );
+
+  return (
+    <div className={styles.container}>
+      {/* SIDEBAR */}
+      <aside className={styles.sidebar}>
+        <div className={styles.logoArea}>
+          <div className={styles.logoIcon}>
+            <CalendarHeart size={28} />
+          </div>
+
+          <div>
+            <h2>Babybuddy</h2>
+
+            <span>
+              Painel Administrador
+            </span>
+          </div>
+        </div>
+
+        <nav className={styles.nav}>
+          <button className={styles.active}>
+            <LayoutDashboard size={20} />
+            Dashboard
+          </button>
+
+          <button>
+            <FileText size={20} />
+            Artigos
+          </button>
+
+          <button>
+            <Users size={20} />
+            Usuários
+          </button>
+
+          <button>
+            <ShieldCheck size={20} />
+            Segurança
+          </button>
+
+          <button>
+            <Settings size={20} />
+            Configurações
+          </button>
+        </nav>
+      </aside>
+
+      {/* CONTEÚDO */}
+      <main className={styles.content}>
+        {/* TOPBAR */}
+        <header className={styles.topbar}>
+          <div>
+            <h1>
+              Dashboard Administrativo
+            </h1>
+
+            <p>
+              Gerencie artigos,
+              usuários e conteúdos da
+              plataforma.
+            </p>
+          </div>
+
+          <div className={styles.topActions}>
+            <div
+              className={styles.searchBox}
+            >
+              <Search size={18} />
+
+              <input
+                type="text"
+                placeholder="Pesquisar artigo..."
+                value={pesquisa}
+                onChange={(e) =>
+                  setPesquisa(
+                    e.target.value
+                  )
+                }
+              />
+            </div>
+
+            <div className={styles.profile}>
+              {admin
+                .charAt(0)
+                .toUpperCase()}
+            </div>
+          </div>
+        </header>
+
+        {/* STATS */}
+        <section className={styles.stats}>
+          <div className={styles.statCard}>
+            <h3>Total de Artigos</h3>
+
+            <strong>
+              {artigos.length}
+            </strong>
+          </div>
+
+          <div className={styles.statCard}>
+            <h3>Artigos Ativos</h3>
+
+            <strong>
+              {
+                artigos.filter(
+                  (a) =>
+                    a.status ===
+                    "ativo"
+                ).length
+              }
+            </strong>
+          </div>
+
+          <div className={styles.statCard}>
+            <h3>Suspensos</h3>
+
+            <strong>
+              {
+                artigos.filter(
+                  (a) =>
+                    a.status ===
+                    "suspenso"
+                ).length
+              }
+            </strong>
+          </div>
+
+          <div className={styles.statCard}>
+            <h3>Usuários</h3>
+
+            <strong>1.248</strong>
+          </div>
+        </section>
+
+        {/* HEADER */}
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>
+              Gerenciamento de Artigos
+            </h2>
+
+            <p>
+              Controle completo dos
+              conteúdos publicados.
+            </p>
+          </div>
+
+          <button
+            className={styles.addButton}
+            onClick={adicionarArtigo}
+          >
+            <Plus size={18} />
+            Novo Artigo
+          </button>
+        </div>
+
+        {/* GRID */}
+        <div className={styles.grid}>
+          {artigosFiltrados.map(
+            (artigo) => (
+              <div
+                key={artigo.id}
+                className={`${styles.card} ${
+                  artigo.status ===
+                  "suspenso"
+                    ? styles.suspended
+                    : ""
+                }`}
+              >
+                <img
+                  src={artigo.imagem}
+                  alt={artigo.titulo}
+                />
+
+                <div
+                  className={
+                    styles.cardContent
+                  }
+                >
+                  <span>
+                    {artigo.categoria}
+                  </span>
+
+                  <h3>
+                    {artigo.titulo}
+                  </h3>
+
+                  <p>
+                    {artigo.descricao}
+                  </p>
+
+                  <div
+                    className={
+                      styles.statusArea
+                    }
+                  >
+                    <div
+                      className={`${styles.status} ${
+                        artigo.status ===
+                        "ativo"
+                          ? styles.activeStatus
+                          : styles.suspendedStatus
+                      }`}
+                    >
+                      {artigo.status ===
+                      "ativo"
+                        ? "ATIVO"
+                        : "SUSPENSO"}
+                    </div>
+                  </div>
+                </div>
+
+                {/* BOTÕES */}
+                <div
+                  className={
+                    styles.actions
+                  }
+                >
+                  <button
+                    className={
+                      styles.editBtn
+                    }
+                    onClick={() =>
+                      editarArtigo(
+                        artigo.id
+                      )
+                    }
+                  >
+                    <Pencil size={16} />
+                    Editar
+                  </button>
+
+                 
+
+                  <button
+                    className={
+                      styles.suspendBtn
+                    }
+                    onClick={() =>
+                      suspenderArtigo(
+                        artigo.id
+                      )
+                    }
+                  >
+                    {artigo.status ===
+                    "ativo" ? (
+                      <>
+                        <Ban size={16} />
+                        Suspender
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle2 size={16} />
+                        Ativar
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    className={
+                      styles.deleteBtn
+                    }
+                    onClick={() =>
+                      excluirArtigo(
+                        artigo.id
+                      )
+                    }
+                  >
+                    <Trash2 size={16} />
+                    Excluir
+                  </button>
+                </div>
+              </div>
+            )
+          )}
+        </div>
+
+        {/* MODAL */}
+        {modalEditar && (
+          <div
+            className={
+              styles.modalOverlay
+            }
+          >
+            <div className={styles.modal}>
+              <div
+                className={
+                  styles.modalHeader
+                }
+              >
+                <h2>
+                  Editar artigo
+                </h2>
+
+                <p>
+                  Altere as informações
+                  do artigo.
+                </p>
+              </div>
+
+              <div
+                className={
+                  styles.modalForm
+                }
+              >
+                <div
+                  className={
+                    styles.modalGroup
+                  }
+                >
+                  <label>
+                    Alterar nome do
+                    artigo
+                  </label>
+
+                  <input
+                    type="text"
+                    value={novoTitulo}
+                    onChange={(e) =>
+                      setNovoTitulo(
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div
+                  className={
+                    styles.modalGroup
+                  }
+                >
+                  <label>
+                    Alterar categoria
+                  </label>
+
+                  <input
+                    type="text"
+                    value={
+                      novaCategoria
+                    }
+                    onChange={(e) =>
+                      setNovaCategoria(
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div
+                  className={
+                    styles.modalGroup
+                  }
+                >
+                  <label>
+                    Alterar descrição
+                  </label>
+
+                  <textarea
+                    value={
+                      novaDescricao
+                    }
+                    onChange={(e) =>
+                      setNovaDescricao(
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div
+                  className={
+                    styles.modalButtons
+                  }
+                >
+                  <button
+                    className={
+                      styles.cancelBtn
+                    }
+                    onClick={() =>
+                      setModalEditar(
+                        false
+                      )
+                    }
+                  >
+                    Cancelar
+                  </button>
+
+                  <button
+                    className={
+                      styles.saveBtn
+                    }
+                    onClick={
+                      salvarEdicao
+                    }
+                  >
+                    Salvar artigo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
   );
-
-  padding: 30px 20px;
-
-  border-right: 1px solid #f7d9e5;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  box-shadow: 4px 0 20px rgba(220, 43, 116, 0.04);
-}
-
-/* LOGO */
-
-.logoArea {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logoIcon {
-  min-width: 52px;
-  width: 52px;
-  height: 52px;
-
-  background: linear-gradient(
-    135deg,
-    #DC2B74,
-    #b91c5c
-  );
-
-  color: white;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 10px 20px rgba(220, 43, 116, 0.18);
-}
-
-.logoArea h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #34111f;
-  line-height: 1.1;
-}
-
-.logoArea span {
-  color: #9b7181;
-  font-size: 0.84rem;
-  font-weight: 500;
-  margin-top: 3px;
-  display: block;
-}
-
-/* NAV */
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 40px;
-}
-
-.nav button {
-  border: none;
-  background: transparent;
-  padding: 12px 14px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 0.92rem;
-  color: #6d4a59;
-  transition: 0.25s;
-  font-weight: 600;
-}
-
-.nav button:hover {
-  background: #fde7f0;
-}
-
-.active {
-  background: #DC2B74 !important;
-  color: white !important;
-}
-
-/* CONTEUDO */
-
-.content {
-  flex: 1;
-  padding: 28px;
-}
-
-/* TOPBAR */
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  line-height: 0.2rem;
-}
-
-.topbar h1 {
-  font-size: 2rem;
-  color: #2f1020;
-}
-
-.topbar p {
-  margin-top: 6px;
-  color: #8b5d71;
-  font-size: 0.92rem;
-}
-
-.topActions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* INPUT PESQUISA */
-
-.searchBox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: white;
-  padding: 0 14px;
-  border-radius: 14px;
-  width: 260px;
-  height: 48px;
-  border: 1px solid #f2d6e2;
-  transition: 0.3s;
-  box-shadow: 0 4px 14px rgba(220, 43, 116, 0.05);
-}
-
-.searchBox:focus-within {
-  border-color: #DC2B74;
-  box-shadow: 0 0 0 4px rgba(220, 43, 116, 0.08);
-}
-
-.searchBox input {
-  border: none;
-  outline: none;
-  width: 100%;
-  background: transparent;
-  font-size: 0.92rem;
-  color: #2f1020;
-}
-
-.searchBox input::placeholder {
-  color: #b08a9b;
-}
-
-/* PROFILE */
-
-.profile {
-  width: 48px;
-  height: 48px;
-  background: #DC2B74;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
-
-  box-shadow:
-    0 8px 20px rgba(220, 43, 116, 0.18);
-}
-
-/* STATS */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(180px, 1fr)
-  );
-
-  gap: 18px;
-  margin-bottom: 34px;
-}
-
-.statCard {
-  background: white;
-
-  padding: 22px;
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 6px 20px rgba(220, 43, 116, 0.06);
-
-  border: 1px solid #f8dbe7;
-}
-
-.statCard h3 {
-  color: #8b5d71;
-  font-size: 0.92rem;
-  margin-bottom: 10px;
-}
-
-.statCard strong {
-  font-size: 1.8rem;
-  color: #2f1020;
-}
-
-/* SECTION */
-
-.sectionHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-bottom: 22px;
-}
-
-.sectionHeader h2 {
-  font-size: 1.6rem;
-  color: #2f1020;
-}
-
-.sectionHeader p {
-  margin-top: 5px;
-  color: #8b5d71;
-  font-size: 0.9rem;
-}
-
-.addButton {
-  border: none;
-
-  background: linear-gradient(
-    135deg,
-    #DC2B74,
-    #c41f66
-  );
-
-  color: white;
-
-  padding: 12px 18px;
-
-  border-radius: 14px;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  font-weight: 600;
-  font-size: 0.9rem;
-
-  transition: 0.3s;
-
-  box-shadow:
-    0 10px 20px rgba(220, 43, 116, 0.18);
-}
-
-.addButton:hover {
-  transform: translateY(-2px);
-}
-
-/* GRID */
-
-.grid {
-  display: grid;
-
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(290px, 330px)
-  );
-
-  gap: 22px;
-
-  justify-content: flex-start;
-}
-
-/* CARD */
-
-.card {
-  width: 100%;
-  max-width: 330px;
-
-  background: white;
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  border: 1px solid #f7dbe6;
-
-  box-shadow:
-    0 10px 24px rgba(220, 43, 116, 0.06);
-
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-
-  box-shadow:
-    0 16px 30px rgba(220, 43, 116, 0.10);
-}
-
-.card img {
-  width: 100%;
-  height: 210px;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-.cardContent {
-  padding: 18px;
-}
-
-.cardContent span {
-  color: #DC2B74;
-  font-weight: 700;
-  font-size: 0.76rem;
-}
-
-.cardContent h3 {
-  margin: 10px 0;
-  color: #2f1020;
-  font-size: 1.2rem;
-}
-
-.cardContent p {
-  color: #8b5d71;
-  line-height: 1.5;
-  font-size: 0.9rem;
-}
-
-/* STATUS */
-
-.statusArea {
-  margin-top: 16px;
-}
-
-.status {
-  display: inline-flex;
-
-  padding: 6px 12px;
-
-  border-radius: 999px;
-
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.activeStatus {
-  background: #fce7f3;
-  color: #be185d;
-}
-
-.suspendedStatus {
-  background: #ffe4e6;
-  color: #be123c;
-}
-
-/* BOTÕES */
-
-.actions {
-  padding: 0 18px 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 8px;
-}
-
-.actions button,
-.actions label {
-  flex: 1;
-
-  border: none;
-
-  height: 36px;
-
-  padding: 0 10px;
-
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  cursor: pointer;
-
-  font-weight: 600;
-  font-size: 0.72rem;
-
-  transition: 0.3s;
-
-  white-space: nowrap;
-}
-
-.actions label input {
-  display: none;
-}
-
-.editBtn {
-  background: #fde7f0;
-  color: #DC2B74;
-}
-
-.editBtn:hover {
-  background: #fbcfe0;
-}
-
-.suspendBtn {
-  background: #fff1f2;
-  color: #be185d;
-}
-
-.suspendBtn:hover {
-  background: #ffe4e6;
-}
-
-.deleteBtn {
-  background: #ffe4e6;
-  color: #e11d48;
-}
-
-.deleteBtn:hover {
-  background: #fecdd3;
-}
-
-.suspended {
-  opacity: 0.65;
-}
-
-/* MODAL */
-
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(15, 15, 20, 0.45);
-
-  backdrop-filter: blur(4px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 999;
-
-  padding: 20px;
-}
-
-.modal {
-  width: 100%;
-  max-width: 500px;
-
-  background: white;
-
-  border-radius: 28px;
-
-  padding: 30px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-
-  box-shadow:
-    0 25px 60px rgba(220, 43, 116, 0.18);
-
-  animation: modalAnimation 0.25s ease;
-}
-
-@keyframes modalAnimation {
-  from {
-    opacity: 0;
-    transform: translateY(10px)
-      scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
-
-.modal h2 {
-  font-size: 1.6rem;
-  color: #2f1020;
-  font-weight: 700;
-}
-
-/* INPUTS MODAL */
-
-.modal input,
-.modal textarea {
-  width: 100%;
-
-  border: 1.5px solid #f3d4e1;
-
-  background: #fffafd;
-
-  border-radius: 16px;
-
-  padding: 15px 16px;
-
-  outline: none;
-
-  font-size: 0.95rem;
-
-  color: #2f1020;
-
-  transition: 0.3s;
-}
-
-.modal input:focus,
-.modal textarea:focus {
-  border-color: #DC2B74;
-
-  box-shadow:
-    0 0 0 4px rgba(220, 43, 116, 0.08);
-}
-
-.modal textarea {
-  min-height: 120px;
-  resize: none;
-}
-
-.modal input::placeholder,
-.modal textarea::placeholder {
-  color: #b08a9b;
-}
-
-/* BOTÕES MODAL */
-
-.modalButtons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-
-  margin-top: 6px;
-}
-
-.modalButtons button {
-  border: none;
-
-  height: 46px;
-
-  padding: 0 20px;
-
-  border-radius: 14px;
-
-  cursor: pointer;
-
-  font-weight: 600;
-  font-size: 0.92rem;
-
-  transition: 0.3s;
-}
-
-.modalButtons button:first-child {
-  background: #f8e8ef;
-  color: #8b5d71;
-}
-
-.modalButtons button:first-child:hover {
-  background: #f4d9e5;
-}
-
-.saveBtn {
-  background: linear-gradient(
-    135deg,
-    #DC2B74,
-    #c41f66
-  );
-
-  color: white;
-
-  box-shadow:
-    0 10px 20px rgba(220, 43, 116, 0.18);
-}
-
-.saveBtn:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 14px 24px rgba(220, 43, 116, 0.24);
-}
-
-/* RESPONSIVO */
-
-@media (max-width: 1100px) {
-  .sidebar {
-    display: none;
-  }
-
-  .content {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-  }
-
-  .topActions {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .searchBox {
-    width: 100%;
-  }
-
-  .sectionHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .topbar h1 {
-    font-size: 1.7rem;
-  }
-
-  .modal {
-    padding: 24px;
-  }
-
-  .modalButtons {
-    flex-direction: column;
-  }
-
-  .modalButtons button {
-    width: 100%;
-  }
 }
