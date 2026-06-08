@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { useGoogleLogin } from '@react-oauth/google';
+
 
 import {
   FiUser,
@@ -52,68 +52,7 @@ export default function Cadastro() {
     setShowConfirmarSenha
   ] = useState(false);
 
-  // 🔥 LOGIN COM GOOGLE
-  const loginGoogle = useGoogleLogin({
 
-    onSuccess: async (tokenResponse) => {
-
-      try {
-
-        const userInfo = await fetch(
-          "https://www.googleapis.com/oauth2/v3/userinfo",
-          {
-            headers: {
-              Authorization:
-                `Bearer ${tokenResponse.access_token}`,
-            },
-          }
-        );
-
-        const user = await userInfo.json();
-
-        console.log(
-          "Usuário Google:",
-          user
-        );
-
-        // SALVA USUÁRIO GOOGLE
-        const usuarioGoogle = {
-          nome: user.name,
-          email: user.email,
-          senha: '',
-          telefone: '',
-          nivelAcesso: 'USUARIO',
-        };
-
-        localStorage.setItem(
-          'usuario',
-          JSON.stringify(usuarioGoogle)
-        );
-
-        setSuccess(
-          "Login com Google realizado!"
-        );
-
-        // REDIRECIONA
-        navigate('/questionario');
-
-      } catch (err) {
-
-        setError(
-          "Erro no login com Google."
-        );
-
-      }
-    },
-
-    onError: () => {
-
-      setError(
-        "Erro ao autenticar com Google."
-      );
-
-    }
-  });
 
   const handleSubmit = async (e) => {
 
@@ -428,7 +367,6 @@ try {
 
             {/* TELEFONE */}
             <div className={styles.inputGroup}>
-
               <label>
                 Telefone
               </label>
@@ -442,9 +380,7 @@ try {
                   id="telefone"
                   placeholder="(00) 00000-0000"
                 />
-
               </div>
-
             </div>
 
             {/* SENHA */}
@@ -455,9 +391,7 @@ try {
               </label>
 
               <div className={styles.inputBox}>
-
                 <FiLock />
-
                 <input
                   type={
                     showSenha
@@ -490,20 +424,16 @@ try {
 
                   )
                 }
-
               </div>
-
             </div>
 
             {/* CONFIRMAR SENHA */}
             <div className={styles.inputGroup}>
-
               <label>
                 Confirmar senha
               </label>
 
               <div className={styles.inputBox}>
-
                 <FiLock />
 
                 <input
@@ -516,10 +446,9 @@ try {
                   placeholder="Digite sua senha novamente"
                   required
                 />
-
                 {
-                  showConfirmarSenha ? (
 
+                  showConfirmarSenha ? (
                     <FiEyeOff
                       className={styles.eye}
                       onClick={() =>
@@ -538,23 +467,18 @@ try {
 
                   )
                 }
-
               </div>
-
             </div>
 
             {/* TERMOS */}
             <div className={styles.terms}>
-
               <input
                 type="checkbox"
                 required
               />
 
               <p>
-
                 Eu concordo com os
-
                 <Link
                   to="/termos-de-uso"
                   className={styles.link}
@@ -570,9 +494,7 @@ try {
                 >
                   Política de Privacidade
                 </Link>
-
               </p>
-
             </div>
 
             {/* BOTÃO */}
@@ -581,42 +503,23 @@ try {
               disabled={loading}
               className={styles.btn}
             >
-
               {
                 loading
                   ? "Cadastrando..."
                   : "Criar minha conta"
               }
-
             </button>
-
           </form>
 
           <div className={styles.divider}>
-
             <span></span>
             <p>ou</p>
             <span></span>
-
           </div>
 
-          {/* GOOGLE */}
-          <button
-            className={styles.googleButton}
-            onClick={() => loginGoogle()}
-          >
-
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/300/300221.png"
-              alt="Google"
-            />
-
-            Cadastrar com Google
-
-          </button>
+          
 
           <p className={styles.loginText}>
-
             Já tem uma conta?
             <span
               onClick={() =>
@@ -625,13 +528,10 @@ try {
             >
               Entrar
             </span>
-
           </p>
 
         </div>
-
       </div>
-
     </div>
   );
 }

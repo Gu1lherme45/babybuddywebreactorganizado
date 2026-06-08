@@ -10,7 +10,7 @@ import art2 from "../../assets/art2.png";
 import art3 from "../../assets/art3.png";
 
 export default function Perfil() {
-  const usuario = JSON.parse(
+  const usuario = JSON.parse( 
     localStorage.getItem("usuario")
   );
 
@@ -137,7 +137,7 @@ export default function Perfil() {
   }
 
  useEffect(() => {
-  // LIMPA STORAGE ANTIGO
+  // LIMPA STORAGE ANTIGO 
  
 
   carregarArtigos();

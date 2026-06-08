@@ -20,6 +20,9 @@ import {
 import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
 import art3 from "../../assets/art3.png";
+import logo2 from "../../assets/logo2.svg";
+
+
 
 export default function AdminDashboard() {
   const admin =
@@ -62,6 +65,15 @@ export default function AdminDashboard() {
     },
   ];
 
+
+
+
+
+
+
+
+
+
   // STORAGE
   const [artigos, setArtigos] = useState(() => {
     const artigosSalvos = JSON.parse(
@@ -83,8 +95,13 @@ export default function AdminDashboard() {
     return artigosSalvos;
   });
 
-  const [pesquisa, setPesquisa] =
-    useState("");
+
+
+ const [pesquisa, setPesquisa] =
+  useState("");
+
+const [totalUsuarios, setTotalUsuarios] =
+  useState(0);
 
   // MODAL
   const [modalEditar, setModalEditar] =
@@ -102,6 +119,18 @@ export default function AdminDashboard() {
   const [novaCategoria, setNovaCategoria] =
     useState("");
 
+  const [novaImagem, setNovaImagem] =
+  useState("");
+
+
+
+
+
+
+
+
+
+
   // SALVA STORAGE
   useEffect(() => {
     localStorage.setItem(
@@ -113,6 +142,52 @@ export default function AdminDashboard() {
       new Event("artigosAtualizados")
     );
   }, [artigos]);
+
+
+
+
+
+
+
+
+
+
+
+// BUSCA USUÁRIOS DO BANCO
+useEffect(() => {
+  async function carregarUsuarios() {
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/usuarios"
+      );
+
+      if (!response.ok) return;
+
+      const usuarios =
+        await response.json();
+
+      setTotalUsuarios(
+        usuarios.length
+      );
+    } catch (error) {
+      console.error(
+        "Erro ao buscar usuários:",
+        error
+      );
+    }
+  }
+
+  carregarUsuarios();
+}, []);
+
+
+
+
+
+
+
+
+
 
   // EDITAR
   function editarArtigo(id) {
@@ -133,8 +208,21 @@ export default function AdminDashboard() {
       artigo.categoria
     );
 
+    setNovaImagem(
+      artigo.imagem
+    );
+
     setModalEditar(true);
   }
+
+
+
+
+
+
+
+
+
 
   // SALVAR EDIÇÃO
   function salvarEdicao() {
@@ -142,14 +230,13 @@ export default function AdminDashboard() {
       artigos.map((artigo) =>
         artigo.id ===
         artigoEditando.id
-          ? {
-              ...artigo,
-              titulo: novoTitulo,
-              descricao:
-                novaDescricao,
-              categoria:
-                novaCategoria,
-            }
+          ?  {
+    ...artigo,
+    titulo: novoTitulo,
+    descricao: novaDescricao,
+    categoria: novaCategoria,
+    imagem: novaImagem,
+  }
           : artigo
       );
 
@@ -168,6 +255,30 @@ export default function AdminDashboard() {
 
     setModalEditar(false);
   }
+
+  function carregarImagemEdicao(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    setNovaImagem(reader.result);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+
+
+
+
+
+
+
+
+
 
   // ALTERAR IMAGEM
   function alterarImagem(id, event) {
@@ -191,6 +302,16 @@ export default function AdminDashboard() {
     setArtigos(artigosAtualizados);
   }
 
+
+
+
+
+
+
+
+
+
+
   // EXCLUIR
   function excluirArtigo(id) {
     const confirmar = window.confirm(
@@ -206,6 +327,14 @@ export default function AdminDashboard() {
 
     setArtigos(artigosAtualizados);
   }
+
+
+
+
+
+
+
+
 
   // SUSPENDER
   function suspenderArtigo(id) {
@@ -226,6 +355,14 @@ export default function AdminDashboard() {
     setArtigos(artigosAtualizados);
   }
 
+
+
+
+
+
+
+
+
   // NOVO ARTIGO
   function adicionarArtigo() {
     const novoArtigo = {
@@ -234,7 +371,7 @@ export default function AdminDashboard() {
       categoria: "Categoria",
       descricao:
         "Descrição do novo artigo.",
-      imagem: art1,
+      imagem: "" ,
       status: "ativo",
       rota: "/",
     };
@@ -244,6 +381,14 @@ export default function AdminDashboard() {
       ...artigos,
     ]);
   }
+
+
+
+
+
+
+
+
 
   // PESQUISA
   const artigosFiltrados =
@@ -255,51 +400,56 @@ export default function AdminDashboard() {
         )
     );
 
+
+
+
+
+
+
+
   return (
+
+
     <div className={styles.container}>
       {/* SIDEBAR */}
       <aside className={styles.sidebar}>
         <div className={styles.logoArea}>
           <div className={styles.logoIcon}>
-            <CalendarHeart size={28} />
-          </div>
-
-          <div>
-            <h2>Babybuddy</h2>
-
-            <span>
-              Painel Administrador
-            </span>
-          </div>
+  <img
+    src={logo2}
+    alt="BabyBuddy"
+    className={styles.logoImage}
+  />
+</div>
         </div>
 
-        <nav className={styles.nav}>
-          <button className={styles.active}>
-            <LayoutDashboard size={20} />
-            Dashboard
-          </button>
+   <div className={styles.menuArea}>
+  <nav className={styles.nav}>
+    <button className={styles.active}>
+      <LayoutDashboard size={20} />
+      Artigos
+    </button>
 
-          <button>
-            <FileText size={20} />
-            Artigos
-          </button>
+    <button className={styles.active}>
+      <LayoutDashboard size={20} />
+      Usuários
+    </button>
 
-          <button>
-            <Users size={20} />
-            Usuários
-          </button>
-
-          <button>
-            <ShieldCheck size={20} />
-            Segurança
-          </button>
-
-          <button>
-            <Settings size={20} />
-            Configurações
-          </button>
-        </nav>
+    <button className={styles.active}>
+      <LayoutDashboard size={20} />
+      Dashboard
+    </button>
+  </nav>
+</div>  
       </aside>
+
+
+
+
+
+
+
+
 
       {/* CONTEÚDO */}
       <main className={styles.content}>
@@ -316,6 +466,9 @@ export default function AdminDashboard() {
               plataforma.
             </p>
           </div>
+
+
+
 
           <div className={styles.topActions}>
             <div
@@ -342,6 +495,14 @@ export default function AdminDashboard() {
             </div>
           </div>
         </header>
+
+
+
+
+
+
+
+
 
         {/* STATS */}
         <section className={styles.stats}>
@@ -381,12 +542,20 @@ export default function AdminDashboard() {
             </strong>
           </div>
 
-          <div className={styles.statCard}>
-            <h3>Usuários</h3>
+         <div className={styles.statCard}>
+  <h3>Usuários</h3>
+       <strong>
+        {totalUsuarios}
+      </strong>
 
-            <strong>1.248</strong>
-          </div>
+    </div>
         </section>
+
+
+
+
+
+
 
         {/* HEADER */}
         <div className={styles.sectionHeader}>
@@ -410,6 +579,13 @@ export default function AdminDashboard() {
           </button>
         </div>
 
+
+
+
+
+
+
+
         {/* GRID */}
         <div className={styles.grid}>
           {artigosFiltrados.map(
@@ -423,10 +599,16 @@ export default function AdminDashboard() {
                     : ""
                 }`}
               >
-                <img
-                  src={artigo.imagem}
-                  alt={artigo.titulo}
-                />
+ {artigo.imagem ? (
+  <img
+    src={artigo.imagem}
+    alt={artigo.titulo}
+  />
+) : (
+  <div className={styles.semImagem}>
+    📷
+  </div>
+)}
 
                 <div
                   className={
@@ -465,6 +647,12 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </div>
+
+
+
+
+
+
 
                 {/* BOTÕES */}
                 <div
@@ -531,6 +719,14 @@ export default function AdminDashboard() {
           )}
         </div>
 
+
+
+
+
+
+
+
+
         {/* MODAL */}
         {modalEditar && (
           <div
@@ -565,8 +761,7 @@ export default function AdminDashboard() {
                   }
                 >
                   <label>
-                    Alterar nome do
-                    artigo
+                   Titulo do artigo
                   </label>
 
                   <input
@@ -586,7 +781,7 @@ export default function AdminDashboard() {
                   }
                 >
                   <label>
-                    Alterar categoria
+                    Adicone a categoria 
                   </label>
 
                   <input
@@ -622,6 +817,34 @@ export default function AdminDashboard() {
                     }
                   />
                 </div>
+                <div
+  className={
+    styles.modalGroup
+  }
+>
+
+
+  
+<label
+  htmlFor="imagemUpload"
+  className={styles.uploadArea}
+>
+  <span>📷</span>
+
+  <h4>Adicionar imagem</h4>
+
+  <p>Clique para selecionar</p>
+</label>
+
+<input
+  id="imagemUpload"
+  type="file"
+  accept="image/*"
+  onChange={carregarImagemEdicao}
+  hidden
+/>
+</div>
+                
 
                 <div
                   className={
