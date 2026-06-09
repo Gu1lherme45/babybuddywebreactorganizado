@@ -9,7 +9,6 @@ import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
 import art3 from "../../assets/art3.png";
 
-
 export default function Perfil() {
   const usuario = JSON.parse( 
     localStorage.getItem("usuario")
@@ -78,6 +77,10 @@ export default function Perfil() {
 
 
 
+
+
+
+
     // GARANTE ROTAS E STATUS
     artigosStorage = artigosStorage.map(
       (artigo) => {
@@ -97,6 +100,11 @@ export default function Perfil() {
 
 
 
+
+
+
+
+        
 
         // engravidar
         if (
@@ -144,10 +152,10 @@ export default function Perfil() {
     setArtigos(ativos);
   }
 
-
  useEffect(() => {
   // LIMPA STORAGE ANTIGO 
  
+
   carregarArtigos();
 
   window.addEventListener(
@@ -162,15 +170,6 @@ export default function Perfil() {
     );
   };
 }, []);
-
-
-
-
-
-
-
-
-
 
   return (
     <div className={styles.container}>
@@ -193,58 +192,39 @@ export default function Perfil() {
         </div>
       </div>
 
+      {/* DESTAQUE */}
+      <section className={styles.highlight}>
+        <div className={styles.highlightText}>
+          <span className={styles.badge}>
+            ARTIGO EM DESTAQUE
+          </span>
 
+          <h2>
+            Entenda cada fase da gestação
+          </h2>
 
+          <p>
+            Descubra as principais mudanças do
+            corpo e o desenvolvimento do bebê
+            durante toda a gravidez.
+          </p>
 
+          <Link
+            to="/periodo-gestacional"
+            className={styles.button}
+            onClick={() =>
+              window.scrollTo(0, 0)
+            }
+          >
+            Ler artigo
+          </Link>
+        </div>
 
-
-
-
-
-  {/* DESTAQUE */}
-<section className={styles.highlight}>
-  <div className={styles.wrapper}>
-
-    {/* IMAGEM ESQUERDA */}
-    <div className={styles.image}>
-      <img src={art3} alt="Artigo em destaque" />
-    </div>
-
-    {/* TEXTO DIREITA */}
-    <div className={styles.content}>
-
-      <span className={styles.tag}>
-        ARTIGO EM DESTAQUE
-      </span>
-
-      <h2>
-        Entenda cada fase da gestação
-      </h2>
-
-      <p>
-        Acompanhe as principais mudanças do corpo e o desenvolvimento do bebê durante cada etapa da gravidez.
-      </p>
-
-      <Link
-        to="/periodo-gestacional"
-        className={styles.button}
-        onClick={() => window.scrollTo(0, 0)}
-      >
-        Ler artigo
-      </Link>
-
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
+        <CalendarHeart
+          size={90}
+          className={styles.icon}
+        />
+      </section>
 
       {/* ARTIGOS */}
       <div className={styles.artigosContainer}>
