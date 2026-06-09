@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import { CalendarHeart } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// imagens padrão
+import { Search } from "lucide-react";
+
+
 import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
 import art3 from "../../assets/art3.png";
 
 
-export default function Perfil() {
+export default function Perfil() { 
   const usuario = JSON.parse( 
     localStorage.getItem("usuario")
   );
@@ -54,6 +56,8 @@ export default function Perfil() {
   ];
 
   const [artigos, setArtigos] = useState([]);
+  const [pesquisa, setPesquisa] = useState("");
+
 
   // CARREGAR ARTIGOS
   function carregarArtigos() {
@@ -164,10 +168,19 @@ export default function Perfil() {
 }, []);
 
 
+const artigosFiltrados = artigos.filter((artigo) =>
+  artigo.titulo
+    .toLowerCase()
+    .includes(pesquisa.toLowerCase()) ||
 
+  artigo.categoria
+    .toLowerCase()
+    .includes(pesquisa.toLowerCase()) ||
 
-
-
+  artigo.descricao
+    .toLowerCase()
+    .includes(pesquisa.toLowerCase())
+);
 
 
 
@@ -182,9 +195,7 @@ export default function Perfil() {
           </h1>
 
           <p className={styles.subtitle}>
-            Continue acompanhando sua jornada com
-            conteúdos preparados para cada fase da
-            maternidade.
+            Conteúdos feitos com amor para apoiar você em cada fase da gestação.
           </p>
         </div>
 
@@ -195,7 +206,21 @@ export default function Perfil() {
 
 
 
+<div className={styles.searchContainer}>
+  <Search
+  size={18}
+  strokeWidth={1.5}
+  className={styles.searchIcon}
+/>
 
+  <input
+    type="text"
+    placeholder="Pesquisar artigos..."
+    value={pesquisa}
+    onChange={(e) => setPesquisa(e.target.value)}
+    className={styles.searchInput}
+  />
+</div>
 
 
 
@@ -203,36 +228,37 @@ export default function Perfil() {
 
   {/* DESTAQUE */}
 <section className={styles.highlight}>
-  <div className={styles.wrapper}>
+  <div className={styles.card}>
 
-    {/* IMAGEM ESQUERDA */}
     <div className={styles.image}>
       <img src={art3} alt="Artigo em destaque" />
     </div>
 
-    {/* TEXTO DIREITA */}
     <div className={styles.content}>
-
-      <span className={styles.tag}>
-        ARTIGO EM DESTAQUE
+      <span className={styles.category}>
+        DESENVOLVIMENTO
       </span>
 
       <h2>
-        Entenda cada fase da gestação
+       Período Gestacional: Transformações e Cuidados na Gravidez
       </h2>
 
       <p>
-        Acompanhe as principais mudanças do corpo e o desenvolvimento do bebê durante cada etapa da gravidez.
+      O período gestacional é a fase da gravidez em que ocorrem mudanças no corpo da mulher e o desenvolvimento do bebê, sendo essencial o acompanhamento e os cuidados com a saúde.
       </p>
 
-      <Link
-        to="/periodo-gestacional"
-        className={styles.button}
-        onClick={() => window.scrollTo(0, 0)}
-      >
-        Ler artigo
-      </Link>
+      <div className={styles.footer}>
+        <span>6 min de leitura</span>
+        <span>•</span>
+        <span>Equipe Materna</span>
 
+        <Link
+          to="/periodo-gestacional"
+          className={styles.button}
+        >
+          Ler agora
+        </Link>
+      </div>
     </div>
 
   </div>
@@ -253,15 +279,13 @@ export default function Perfil() {
         </h2>
 
         <div className={styles.artigosGrid}>
-          {artigos.map((artigo) => (
-            <Link
-              key={artigo.id}
-              to={artigo.rota || "/"}
-              className={styles.artigoCard}
-              onClick={() =>
-                window.scrollTo(0, 0)
-              }
-            >
+  {artigosFiltrados.map((artigo) => (
+    <Link
+      key={artigo.id}
+      to={artigo.rota || "/"}
+      className={styles.artigoCard}
+      onClick={() => window.scrollTo(0, 0)}
+    >
               <img
                 src={artigo.imagem}
                 alt={artigo.titulo}
