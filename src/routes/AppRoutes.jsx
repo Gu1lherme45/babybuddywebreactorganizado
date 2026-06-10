@@ -14,6 +14,9 @@ import Administrador from '../pages/Administrador/Administrador';
 import PeriodoGestacional from '../pages/PeriodoGestacional/PeriodoGestacional';
 import CuidadosBebe from '../pages/CuidadosBebe/CuidadosBebe';
 import TentandoEngravidar from '../pages/TentandoEngravidar/TentandoEngravidar';
+import SonoDoBebe from '../pages/Sono/Sono';
+import SaudeMental from '../pages/SaudeMental/SaudeMental';
+import Enxoval from '../pages/Enxoval/Enxoval';
 
 import Questionario from '../pages/Questionario/Questionario';
 
@@ -60,6 +63,23 @@ export default function AppRoutes() {
             path="/tentando-engravidar"
             element={<TentandoEngravidar />}
           />
+
+          <Route
+           path="/sono"
+           element={<SonoDoBebe />}
+          />
+
+          <Route
+           path="/saude-mental"
+           element={<SaudeMental />}
+          />
+
+          <Route
+           path="/enxoval"
+           element={<Enxoval />}
+          />
+
+
 
           {/* QUESTIONÁRIO */}
           <Route

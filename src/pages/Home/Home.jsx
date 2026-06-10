@@ -17,7 +17,7 @@ import imgGravida from "../../assets/imggravidahome3.svg";
 
 import {
   ShieldCheck,
-  Heart,
+  Heart, 
   BarChart3,
   ArrowRight
 } from "lucide-react";

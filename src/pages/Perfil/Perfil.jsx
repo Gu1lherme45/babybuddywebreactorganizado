@@ -81,7 +81,7 @@ export default function Perfil() {
 
 
 
-
+ 
     // GARANTE ROTAS E STATUS
     artigosStorage = artigosStorage.map(
       (artigo) => {
@@ -275,7 +275,7 @@ const artigosFiltrados = artigos.filter((artigo) =>
       {/* ARTIGOS */}
       <div className={styles.artigosContainer}>
         <h2 className={styles.artigosTitle}>
-          Principais Artigos
+        Artigos pensados para você
         </h2>
 
         <div className={styles.artigosGrid}>
