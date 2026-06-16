@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap");
+
+.seguranca {
+  width: 100%;
+  background: #fff;
+  padding: 90px 6% 70px;
+  font-family: "League Spartan", sans-serif;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 880px;
+  margin: 0 auto 60px;
+  margin-top: 100px;
+
+  gap: 40px;
+}
+
+.heroText {
+  flex: 0 1 500px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #dc2b74;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.heroText h1 {
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  max-width: 500px;
+}
+
+.line {
+  width: 60px;
+  height: 4px;
+  border-radius: 20px;
+  background: #dc2b74;
+  margin-bottom: 20px;
+}
+
+.heroText p {
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.heroImage {
+  flex: 0 1 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shield {
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #dc2b74 0%,
+    #ff6ba7 100%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  box-shadow:
+    0 20px 40px rgba(220, 43, 116, 0.20),
+    0 10px 20px rgba(220, 43, 116, 0.10);
+
+  transition: transform 0.3s ease;
+}
+
+
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 280px);
+  justify-content: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  width: 280px;
+  height: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #f2f2f2;
+  border-radius: 18px;
+
+  padding: 24px;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  color: #dc2b74;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  color: #dc2b74;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.card p,
+.card li {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.card ul {
+  padding-left: 18px;
+}
+
+
+
+
+
+
+.alert {
+  max-width: 880px;
+  margin: 40px auto 0;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff4f8;
+  border: 1px solid rgba(220, 43, 116, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+.alert svg {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  color: #dc2b74;
+}
+
+.alert div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alert h4 {
+  margin: 0 0 6px;
+
+  color: #dc2b74;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.0;
+}
+
+.alert p {
+  margin: 0;
+
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .heroText p {
+    margin: auto;
+  }
+
+  .line {
+    margin: 0 auto 20px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .heroImage {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .seguranca {
+    padding: 80px 5% 60px;
+  }
+
+  .heroText h1 {
+    font-size: 2.8rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .alert {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .shield {
+    width: 180px;
+    height: 180px;
+  }
+}

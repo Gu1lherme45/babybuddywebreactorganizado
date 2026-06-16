@@ -9,6 +9,7 @@ import Cadastro from '../pages/Cadastro/Cadastro';
 import Login from '../pages/Login/Login';
 import Perfil from '../pages/Perfil/Perfil';
 import Administrador from '../pages/Administrador/Administrador';
+import Seguranca from '../pages/Seguranca/Seguranca';
 
 
 import PeriodoGestacional from '../pages/PeriodoGestacional/PeriodoGestacional';
@@ -45,7 +46,12 @@ export default function AppRoutes() {
             path="/administrador"
             element={<Administrador />}
           />
-
+          
+          {/* SEGURANÇA */}
+<Route
+  path="/seguranca"
+  element={<Seguranca />}
+/>
          
 
           {/* ARTIGOS */}
@@ -97,6 +103,10 @@ export default function AppRoutes() {
             path="/termos-de-uso"
             element={<TermosDeUso />}
           />
+          <Route
+  path="/seguranca"
+  element={<Seguranca />}
+/>
 
         </Route>
       </Routes>
