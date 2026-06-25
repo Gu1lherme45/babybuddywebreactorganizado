@@ -22,7 +22,7 @@
 /* CONTAINER */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px; 
 
   margin: 0 auto;
 
@@ -214,10 +214,8 @@
 
 
 
-/* ============================= */
-/* PADRÃO DAS SECTIONS */
-/* ============================= */
 
+/* PADRÃO DAS SECTIONS */
 .sectionBaby,
 .sectionFeatures,
 .sectionArtigos {
@@ -244,10 +242,16 @@
   line-height: 1.7;
 }
 
-/* ============================= */
-/* BABY SECTION */
-/* ============================= */
 
+
+
+
+
+
+
+
+
+/* BABY SECTION */
 .sectionBaby {
   background-color: #ffffff;
   color: #c21872;
@@ -318,10 +322,12 @@
   line-height: 1.5;
 }
 
-/* ============================= */
-/* FEATURES */
-/* ============================= */
 
+
+
+
+
+/* FEATURES */
 .sectionFeatures {
   width: 100%;
   background-color: #FFD8DC;
@@ -382,10 +388,12 @@
   height: 150px;
 }
 
-/* ============================= */
-/* ARTIGOS */
-/* ============================= */
 
+
+
+
+
+/* ARTIGOS */
 .sectionArtigos {
   width: 100%;
   background-color: #ffffff;
@@ -458,10 +466,11 @@
   z-index: 1;
 }
 
-/* ============================= */
-/* RESPONSIVO GERAL */
-/* ============================= */
 
+
+
+
+/* RESPONSIVO GERAL */
 @media (max-width: 1024px) {
 
   .container {
