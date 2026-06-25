@@ -59,10 +59,7 @@
   height: 30px; /* levemente menor */
 }
 
-/* hover suave */
-.storeIcon:hover {
-  transform: translateY(-2px);
-}
+
 
 /* LINKS */
 .links {

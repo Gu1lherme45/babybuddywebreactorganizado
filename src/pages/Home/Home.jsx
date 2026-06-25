@@ -3,9 +3,24 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from './Home.module.css';
 
+import {
+  CalendarDays,
+  ClipboardCheck,
+  HeartPulse,
+  BookOpen,
+  Users,
+
+  Shield,
+  BadgeCheck,
+  HeartHandshake,
+  BookOpenText
+} from "lucide-react";
 
 
-import imgMobile from "../../assets/mobile.svg";
+import Mobile from "../../assets/imgmobile2.svg";
+
+
+
 import art1 from "../../assets/art1.png";
 import art2 from "../../assets/art2.png";
 import art3 from "../../assets/art3.png";
@@ -135,50 +150,141 @@ export default function Home() {
 
 
 
+<section className={styles.sectionBaby}>
+  <div className={styles.sectionBabyContainer}>
 
-<section id="babybuddyhome" className={styles.sectionBaby}>
+    <div className={styles.sectionBabyLeft}>
+      <img
+        src={Mobile}
+        alt="Imagem do app"
+        className={styles.sectionBabyImage}
+      />
+    </div>
 
-  <div className={styles.babyContainer}>
+    <div className={styles.sectionBabyRight}>
 
-    <h2 className={styles.babyTitle}>
-      O que posso fazer com o aplicativo BabyBuddy?
-    </h2>
+      <h2 className={styles.sectionBabyTitle}>
+        O que posso fazer com o aplicativo BabyBuddy?
+      </h2>
 
-    <div className={styles.babyContent}>
+      <p className={styles.sectionBabyText}>
+        Organize consultas, acompanhe o desenvolvimento do bebê
+        e tenha acesso a informações confiáveis em um único lugar.
+      </p>
 
-<div className={styles.babyImg}>
-  <img src={imgMobile} alt="App BabyBuddy" />
-</div>
-
-      <div className={styles.babyCards}>
-
-        <div className={styles.card}>
-          <h3>Cuide de você</h3>
+      <div className={styles.sectionBabyItem}>
+        <div className={styles.sectionBabyIcon}>
+          <CalendarDays size={20} />
+        </div>
+        <div>
+          <h3>Acompanhamento semanal</h3>
           <p>
-            Cuide da sua gravidez com amor e atenção para garantir uma jornada
-            saudável e feliz para você e seu bebê.
+            Descubra as mudanças do seu corpo e o desenvolvimento do bebê.
           </p>
         </div>
+      </div>
 
-        <div className={styles.card}>
-          <h3>Acompanhe sua gravidez</h3>
+      <div className={styles.sectionBabyItem}>
+        <div className={styles.sectionBabyIcon}>
+          <ClipboardCheck size={20} />
+        </div>
+        <div>
+          <h3>Consultas e exames</h3>
           <p>
-            Cuidar de si mesma durante a gravidez é essencial para garantir
-            saúde e bem-estar para você e seu bebê.
+            Organize compromissos importantes e receba lembretes.
           </p>
         </div>
+      </div>
 
-        <div className={styles.card}>
-          <h3>Por que usar o BabyBuddy?</h3>
+      <div className={styles.sectionBabyItem}>
+        <div className={styles.sectionBabyIcon}>
+          <HeartPulse size={20} />
+        </div>
+        <div>
+          <h3>Saúde da gestante</h3>
           <p>
-            O BabyBuddy facilita o acompanhamento da sua gestação, oferecendo
-            informações personalizadas e suporte diário.
+            Registre sintomas, peso e informações importantes.
           </p>
         </div>
+      </div>
 
+      <div className={styles.sectionBabyItem}>
+        <div className={styles.sectionBabyIcon}>
+          <BookOpen size={20} />
+        </div>
+        <div>
+          <h3>Conteúdo confiável</h3>
+          <p>
+            Artigos e orientações desenvolvidos para cada etapa da gravidez.
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.sectionBabyItem}>
+        <div className={styles.sectionBabyIcon}>
+          <Users size={20} />
+        </div>
+        <div>
+          <h3>Compartilhamento familiar</h3>
+          <p>
+            Permita que pessoas próximas acompanhem sua jornada.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* BENEFÍCIOS */}
+
+  <div className={styles.benefitsContainer}>
+
+    <div className={styles.benefitCard}>
+      <div className={styles.iconCircle}><Shield size={28} /></div>
+
+      <div>
+        <h3>Seguro e privado</h3>
+        <p>Seus dados protegidos com carinho.</p>
       </div>
     </div>
+
+    <div className={styles.divider}></div>
+
+    <div className={styles.benefitCard}>
+      <div className={styles.iconCircle}><BookOpen size={28} /></div>
+
+      <div>
+        <h3>Conteúdo Verificado</h3>
+        <p>Informações confiáveis para sua tranquilidade.</p>
+      </div>
+    </div>
+
+    <div className={styles.divider}></div>
+
+    <div className={styles.benefitCard}>
+      <div className={styles.iconCircle}><BadgeCheck size={28} />
+</div>
+
+      <div>
+        <h3>Feito para você</h3>
+        <p>Porque cada gestação é única e especial.</p>
+      </div>
+    </div>
+
+    <div className={styles.divider}></div>
+
+    <div className={styles.benefitCard}>
+      <div className={styles.iconCircle}><Heart size={28} /></div>
+
+      <div>
+        <h3>Mais que um app</h3>
+        <p>Um parceiro na sua jornada gestacional.</p>
+      </div>
+    </div>
+
   </div>
+
 </section>
 
 
