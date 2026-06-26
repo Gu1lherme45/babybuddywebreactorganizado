@@ -179,7 +179,7 @@ export default function Home() {
         <div>
           <h3>Acompanhamento semanal</h3>
           <p>
-            Descubra as mudanças do seu corpo e o desenvolvimento do bebê.
+            Acompanhe o desenvolvimento do seu bebê.
           </p>
         </div>
       </div>
