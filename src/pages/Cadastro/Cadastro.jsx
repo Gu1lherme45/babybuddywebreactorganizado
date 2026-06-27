@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fi';
 
 import styles from './Cadastro.module.css';
+import { CgPassword } from 'react-icons/cg';
 
 export default function Cadastro() {
 
@@ -113,21 +114,26 @@ export default function Cadastro() {
       return;
     }
 
-    // NOVO USUÁRIO
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 const novoUsuario = {
   nome,
-  email,
-  telefone,
-  senha,
-  nivelAcesso: 'USUARIO',
+  username: email,
+  password: senha,
+  nivelAcesso: "USUARIO"
 };
 
 try {
 
-  // =========================
-  // CRUD ORIGINAL
-  // =========================
+    
 
+  console.log(novoUsuario);
   const response = await fetch(
     'http://localhost:8080/api/usuarios',
     {
@@ -148,7 +154,16 @@ try {
     );
   }
 
-  // =========================
+  
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // NÂO MEXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+    // =========================
   // LOCAL STORAGE
   // =========================
 
